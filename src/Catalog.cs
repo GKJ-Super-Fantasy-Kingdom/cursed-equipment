@@ -26,6 +26,8 @@ namespace CursedEquipment
         internal static bool Wears(Entity entity, string id) =>
             entity is UnitBase && entity.GetItems()?.Contains(id) == true;
 
+        internal static bool IsCursed(Item item) => Cards.ContainsKey(item.GetIdentifier() ?? "");
+
         [HarmonyPatch(typeof(AddressablesManager), "Awake"), HarmonyPostfix]
         internal static void Register(AddressablesManager __instance)
         {

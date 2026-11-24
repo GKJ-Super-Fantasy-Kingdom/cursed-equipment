@@ -14,7 +14,7 @@
       <HintPath>$(ProfileDir)\BepInEx\core\%(Identity).dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp;UnityEngine.Physics2DModule;UnityEngine;UnityEngine.CoreModule;UnityEngine.ImageConversionModule">
+    <Reference Include="Assembly-CSharp;UnityEngine.Physics2DModule;UnityEngine;UnityEngine.CoreModule;UnityEngine.ImageConversionModule;UnityEngine.UI;UnityEngine.UIModule">
       <HintPath>$(ManagedDir)\%(Identity).dll</HintPath>
       <Private>false</Private>
     </Reference>

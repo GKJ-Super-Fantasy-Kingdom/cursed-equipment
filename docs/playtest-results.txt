@@ -1,0 +1,138 @@
+mouse-small-20261124-220808
+PASS registered each item and Forge flag once
+PASS native Forge admits the trio alongside ordinary gear
+Native Forge price 2 Beer
+PASS three native purchase buttons available
+PASS native merchant rendered three cards at 1
+PASS Cracked Spellglass title and both terms fit at 1
+PASS Bitter Chalice title and both terms fit at 1
+PASS Cracked Duelist's Mirror title and both terms fit at 1
+PASS mouse-small selected exact card and spawned native equipment
+PASS ordinary equipment rules admit offer
+PASS selected native drop equipped
+PASS native three-item limit enforced
+FINISHED
+
+mouse-20261124-222132
+PASS registered each item and Forge flag once
+PASS native Forge admits the trio alongside ordinary gear
+Native Forge price 2 Beer
+PASS three native purchase buttons available
+PASS native merchant rendered three cards at 1.5
+PASS Cracked Spellglass title and both terms fit at 1.5
+PASS Bitter Chalice title and both terms fit at 1.5
+PASS Cracked Duelist's Mirror title and both terms fit at 1.5
+PASS mouse selected exact card and spawned native equipment
+PASS ordinary equipment rules admit offer
+PASS pinned wearer retains native restriction
+PASS selected native drop equipped
+PASS native three-item limit enforced
+PASS Chalice suppresses immediate native heal
+PASS native health receives one amplified heal
+PASS native checkpoint saved equipped gear
+PASS monster outside unmodified search radius
+PASS fully shielded circle preserves opener
+PASS enlarged physics query reaches monster with 16 HP opener, actual HP 184
+PASS re-equipping Mirror leaves 6 HP follow-up
+PASS second living wearer on copied save
+PASS native Magnet moved Chalice between real units
+PASS former wearer loses pending heal on transfer
+PASS pending heal on second wearer cannot revive
+FINISHED
+
+pad-20261124-221024
+PASS registered each item and Forge flag once
+PASS native Forge admits the trio alongside ordinary gear
+Native Forge price 2 Beer
+PASS three native purchase buttons available
+PASS native merchant rendered three cards at 1
+PASS Cracked Spellglass title and both terms fit at 1
+PASS Bitter Chalice title and both terms fit at 1
+PASS Cracked Duelist's Mirror title and both terms fit at 1
+Pad focus before horizontal move: BuyButtonSell(Clone), preferred=BuyButtonSell(Clone), active=True
+PASS D-pad changed focused native purchase button
+PASS pad selected exact card and spawned native equipment
+PASS ordinary equipment rules admit offer
+PASS selected native drop equipped
+PASS native three-item limit enforced
+FINISHED
+
+pad-large-20261124-220539
+PASS registered each item and Forge flag once
+PASS native Forge admits the trio alongside ordinary gear
+Native Forge price 2 Beer
+PASS three native purchase buttons available
+PASS native merchant rendered three cards at 1.5
+PASS Cracked Spellglass title and both terms fit at 1.5
+PASS Bitter Chalice title and both terms fit at 1.5
+PASS Cracked Duelist's Mirror title and both terms fit at 1.5
+Pad focus before horizontal move: BuyButtonSell(Clone)
+PASS D-pad changed focused native purchase button
+PASS pad-large selected exact card and spawned native equipment
+PASS ordinary equipment rules admit offer
+PASS selected native drop equipped
+PASS native three-item limit enforced
+FINISHED
+
+content-20261124-222055
+PASS registered each item and Forge flag once
+PASS available deployment spot for pack unit
+PASS separate plugin native unit spawned
+Registered equipment based on Bow
+PASS content-pack unit eligible for GKJ_Test_CompatibleGear
+PASS content-pack unit eligible for GKJ_CE_CrackedSpellglass
+PASS content-pack unit eligible for GKJ_CE_CrackedDuelistsMirror
+PASS mod-added gear coexists in three native slots
+PASS monster outside unmodified search radius
+PASS fully shielded circle preserves opener
+PASS enlarged physics query reaches monster with 16 HP opener, actual HP 184
+PASS re-equipping Mirror leaves 6 HP follow-up
+FINISHED
+
+reload-20261124-222215
+PASS Continue tavern restored equipped IDs
+PASS registered each item and Forge flag once
+PASS fresh Continue restored each equipped ID exactly once
+FINISHED
+
+Installed-assembly checks
+PASS Mirror transforms installed positive HP damage branch
+PASS ProjectileActionFindTargets.Trigger transforms installed IL
+PASS ProjectileSActionFindTargets.Trigger transforms installed IL
+PASS CombatEffectDamage.Trigger transforms installed IL
+PASS CombatEffectRealDamage.Trigger transforms installed IL
+PASS other packs retain native labels
+PASS GKJ_CE_CrackedSpellglass puts Gift and Curse in the same native description
+PASS GKJ_CE_BitterChalice puts Gift and Curse in the same native description
+PASS GKJ_CE_CrackedDuelistsMirror puts Gift and Curse in the same native description
+PASS glass sprite embedded
+PASS chalice sprite embedded
+PASS mirror sprite embedded
+PASS circle wraps only damage and preserves shared effect definitions
+PASS radius increases once with duplicate Spellglass
+PASS damage is reduced once per target and composes with both Mirror multipliers
+PASS direct use of the same effect retains full damage
+PASS non-damaging override prevents radius boost
+PASS real-damage circle qualifies
+PASS unequipped wearer has base radius
+PASS new mod-added wearer qualifies
+PASS zero damage preserves opener and duplicate mirrors double only once
+PASS second hit is discounted
+PASS moving Mirror separates wearer histories
+PASS returning the Mirror cannot reset first hit
+PASS fresh monster life gets a new opener
+PASS ordinary source damage
+PASS pre-equipment hit is remembered
+PASS promotion retains native wearer identity
+PASS heal waits three scaled seconds
+PASS one amplified delivery, attribution retained, duplicate cup did not stack
+PASS transfer and same-frame re-equip cancel the pending heal
+PASS death invalidates pending heal even if revived before delivery
+PASS dead recipient cannot receive or queue delayed overheal
+PASS each heal keeps its own deadline and type
+PASS Continue clears pending combat heals
+PASS Shield passes through
+PASS OverShield passes through
+PASS Rage passes through
+PASS copied checkpoint inventory round-trips ordinary and cursed IDs through Entity.SetItems
+39 checks passed.

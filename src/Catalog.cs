@@ -19,7 +19,7 @@ namespace CursedEquipment
             {
                 [Glass] = ("Cracked Spellglass", "Gift: Damaging circles gain 40% radius.\nCurse: Each target takes 20% less damage.", "glass"),
                 [Cup] = ("Bitter Chalice", "Gift: Receive 50% more healing.\nCurse: Heals arrive 3 seconds late.", "chalice"),
-                [Mirror] = ("Cracked Duelist’s Mirror", "Gift: First hit to each monster’s health deals double.\nCurse: Later hits deal 25% less.", "mirror")
+                [Mirror] = ("Cracked Duelist's Mirror", "Gift: Double the first hit to each monster's health.\nCurse: Later hits deal 25% less.", "mirror")
             };
 
         // All equipment tests read the native unit inventory at the point of use.

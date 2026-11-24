@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Managed>D:/SteamLibrary/steamapps/common/Super Fantasy Kingdom/Super Fantasy Kingdom_Data/Managed</Managed>
+    <Core>$(APPDATA)/Thunderstore Mod Manager/DataFolder/SuperFantasyKingdom/profiles/GKJ - Controller Test/BepInEx/core</Core>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp;UnityEngine;UnityEngine.CoreModule;UnityEngine.Physics2DModule;UnityEngine.UI;UnityEngine.UIModule;UnityEngine.ScreenCaptureModule;UnityEngine.TextRenderingModule;UnityEngine.ImageConversionModule;Unity.InputSystem;Unity.TextMeshPro">
+      <HintPath>$(Managed)/%(Identity).dll</HintPath><Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx;0Harmony"><HintPath>$(Core)/%(Identity).dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

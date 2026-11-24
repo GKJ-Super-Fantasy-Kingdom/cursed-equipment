@@ -1,0 +1,10 @@
+{
+  "name": "CursedEquipment",
+  "version_number": "0.1.0",
+  "website_url": "",
+  "description": "Three pieces of native equipment trade wider attacks, stronger healing and harder opening hits for a curse on the wearer.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2305",
+    "BepInEx-HideManagerGameObject_Config-5.4.2304"
+  ]
+}

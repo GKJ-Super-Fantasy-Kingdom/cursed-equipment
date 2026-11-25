@@ -1,0 +1,205 @@
+Super Fantasy Kingdom 0.8.068
+Loaded runtime inventory (excluding the QA harness)
+LOADED gkj.cursedrelics 0.1.1 5b5a790a7301d581efb642a1c89054083a43b197403b85e04ce8052c323b4309 assembly=0.1.1.0
+LOADED gkj.holdtheline 0.2.3 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb assembly=0.2.3.0
+LOADED gkj.nightsofterror 0.1.3 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb assembly=0.1.3.0
+LOADED gkj.sfk.amayawithoutcooldown 0.1.2 f486026e0a5b42df0e7476ddc577f5ea936224492018b62c926c7e46a25c6f76 assembly=0.1.2.0
+LOADED gkj.sfk.caravancommissions 0.1.3 d18b191c336e20d4f8ce8dfc195653f809fe3e6855486755e7ff1edc03cf90cd assembly=0.1.3.0
+LOADED gkj.sfk.cursedequipment 0.1.0 30680463c6656776f867646ed8d0c495aabc42091660d6b2cad16bedc12e7b19 assembly=0.1.0.0
+LOADED gkj.sfk.kingdomcharters 0.1.2 20799693733ff62dbc0bb75a1f9a1b300f971b27d1d76d38a4dd75edfae751b6 assembly=0.1.2.0
+LOADED gkj.sfk.workerpresets 0.1.3 39f3d807f85964fbfc59013c8d696a75f16fc5cdb5605fc6b7c75d10a2759814 assembly=0.1.3.0
+LOADED gkj.superfantasykingdom.weeklyhermit 0.1.2 db605d1e05d9fc9421a82ec6573750c6355e90ce361ed3fabb0e61e789dce58a assembly=0.1.2.0
+LOADED ownly.achievementenabler 1.1.0 ea09177976f1ddd738720c7ab099c2853ef4649785c39f81b65f8d0a62ff7019 assembly=1.1.0.0
+LOADED sfk.dailycaravan 0.1.3 6994a5da291a0697476dc65867ba6c1b0b30b6be1248a6e46b9f15c1ce71470d assembly=0.1.3.0
+LOADED sfk.daybook 0.4.2 7be397095d19f396e9ec1d691c5868a8beb2f48edbe5eb5316f98a53e93cda50 assembly=0.4.2.0
+LOADED sfk.pinabuildcost 0.2.1 be8b512fc80a2d3869d7aa2cec745dcef0d41559f80cf2af7316037f008512a1 assembly=0.2.1.0
+LOADED sfk.productionbottlenecks 0.2.3 85000421d2a7a1f32b95c082b8ce277d0fb048f2e0fbd7571d724633fac1656b assembly=0.2.3.0
+LOADED sfk.relicloadoutjournal 0.1.2 2b60d8f5adf817a3a046fd10d671da3dbb1b46fdd589123e21e39631d6141756 assembly=0.1.2.0
+LOADED sfk.visitorcalendar 0.1.2 a6e130b005aee2260544370fe57bdf0892d9d3323439d39d81b4a6e54977ea83 assembly=0.1.2.0
+LOADED sfk.weeklycontracts 0.1.2 2c57bff98e78fe2de674d4c7b392a65428095e65cf4c4d7b8a04f5c13af96ca8 assembly=0.1.2.0
+
+combined-pad-large (20261125-085515)
+VISIBLE combined-pad-large PID=40764 HWND=25368606 foreground=True
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS registered each item and Forge flag once
+PASS active input scheme Gamepad and UI scale 1.5
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER Bow, Tome, Sword
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back closed the unaltered Blacksmith
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS D-pad focused paid Chalice
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS native save wrote the purchased Chalice
+PASS copied kingdom running at normal speed
+PASS recipient death canceled the queue without revival
+WAVE clock=13.14636 phase=Morning ordinary=0 midnight=0 speed=1
+WAVE clock=13.23452 phase=Morning ordinary=0 midnight=0 speed=1
+NATIVE ordinary spawn Lich clock=13.2633
+PASS ordinary outside base radius
+PASS ordinary took 16 opener HP, observed 184
+PASS ordinary took 6 follow-up HP after re-equipping Mirror
+WAVE clock=13.30263 phase=Day ordinary=8 midnight=0 speed=1
+WAVE clock=13.3905 phase=Day ordinary=26 midnight=0 speed=1
+WAVE clock=13.47852 phase=Day ordinary=43 midnight=0 speed=1
+WAVE clock=13.56638 phase=Day ordinary=60 midnight=0 speed=1
+WAVE clock=13.65425 phase=Day ordinary=77 midnight=0 speed=1
+WAVE clock=13.74211 phase=Day ordinary=95 midnight=0 speed=1
+WAVE clock=13.83012 phase=Sunset ordinary=112 midnight=0 speed=1
+WAVE clock=13.91785 phase=Evening ordinary=119 midnight=0 speed=1
+NATIVE midnight spawn Shaman clock=13.94737 ordinary still alive=71
+PASS midnight reinforcement outside base radius
+PASS midnight reinforcement took 16 opener HP, observed 184
+PASS midnight reinforcement took 6 follow-up HP after re-equipping Mirror
+PASS natural wave and scheduled midnight group advanced after controlled hit probes, 60/60 reinforcements
+FINISHED
+Player and loader error/exception scan: no matches
+
+combined-pad (20261125-085515)
+VISIBLE combined-pad PID=35932 HWND=4396820 foreground=True
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+Reset the retry marker for the newly copied private day-13 fixture
+PASS registered each item and Forge flag once
+PASS active input scheme Gamepad and UI scale 1
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER Bow, Tome, Sword
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back closed the unaltered Blacksmith
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS D-pad focused paid Chalice
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+Player and loader error/exception scan: no matches
+
+combined-mouse (20261125-090138)
+VISIBLE combined-mouse PID=35132 HWND=6624866 foreground=True
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS registered each item and Forge flag once
+PASS active input scheme KeyboardMouse and UI scale 1
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER Bow, Tome, Sword
+PASS Back closed the unaltered Blacksmith
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+Fixture resumed after a native popup paused the clock: unknown
+PASS copied kingdom running at normal speed
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+Player and loader error/exception scan: no matches
+
+combined-mouse-large (20261125-090138)
+VISIBLE combined-mouse-large PID=8536 HWND=4395066 foreground=True
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS registered each item and Forge flag once
+PASS active input scheme KeyboardMouse and UI scale 1.5
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER Bow, Tome, Sword
+PASS Back closed the unaltered Blacksmith
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+Fixture resumed after a native popup paused the clock: unknown
+PASS copied kingdom running at normal speed
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+Player and loader error/exception scan: no matches
+
+combined-reload (20261125-090249)
+VISIBLE combined-reload PID=38416 HWND=45684706 foreground=True
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS registered each item and Forge flag once
+PASS Continue restored one purchased Chalice on the recipient, former wearer has none
+PASS copied kingdom running at normal speed
+PASS Continued wearer delayed healing
+Fixture resumed after a native popup paused the clock: unknown
+PASS copied kingdom running at normal speed
+PASS Continued wearer held healing before its deadline
+PASS Continued wearer got exactly one +50% heal
+FINISHED
+Player and loader error/exception scan: no matches

@@ -4,7 +4,7 @@ Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy King
 
 ## Features
 
-- Ten rare items with original pixel-art icons and the same plum-and-crimson frame and title ribbon as Cursed Relics 0.2.8, with native focus and rarity.
+- Ten rare items with original pixel-art icons and the same plum-and-crimson card treatment as Cursed Relics, with native focus and rarity.
 - The cards show each Gift and the red Curse together. Rarity markers and prices use the game's usual controls.
 - Effects follow the wearer. Copies occupy ordinary equipment slots and their effect applies once.
 - Equipped pieces and dropped items persist through the native kingdom save.
@@ -12,9 +12,10 @@ Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy King
 
 ## How to Use
 
-1. Visit the Blacksmith and inspect the Gift and Curse before buying. The ten items join the normal rotating stock.
+1. Visit the Blacksmith and inspect the Gift and Curse before buying. The ten items join the game's normal stock rotation.
 2. Equip a purchase using the game's item controls. Use the Magnet to remove and redistribute gear.
 3. Keep Cursed Equipment enabled when continuing a kingdom containing its items.
+4. The Blacksmith rotation determines equipment availability. The optional Cursed Relics chance setting governs its own eligible chest rewards.
 
 ## Screenshots
 
@@ -22,7 +23,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Cracked Spellglass
 
-![Cracked Spellglass native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-spellglass.png)
+![Cracked Spellglass card showing a blue spellglass with a brass handle, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-spellglass.png)
 
 **Gift** Damaging circles gain 40% radius.
 
@@ -30,7 +31,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Bitter Chalice
 
-![Bitter Chalice native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/bitter-chalice.png)
+![Bitter Chalice card showing a golden cup with crimson contents, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/bitter-chalice.png)
 
 **Gift** Receive 50% more healing.
 
@@ -38,7 +39,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Cracked Duelist's Mirror
 
-![Cracked Duelist's Mirror native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-duelists-mirror.png)
+![Cracked Duelist's Mirror card showing a round, bronze-framed mirror, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-duelists-mirror.png)
 
 **Gift** Double the first hit to each monster's health.
 
@@ -46,7 +47,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Duelist's Fang
 
-![Duelist's Fang native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/duelists-fang.png)
+![Duelist's Fang card showing a small curved pale blade, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/duelists-fang.png)
 
 **Gift** +10% damage per repeat hit, up to +50%.
 
@@ -54,7 +55,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Martyr's Plate
 
-![Martyr's Plate native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/martyrs-plate.png)
+![Martyr's Plate card showing a slate breastplate with a crimson mark, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/martyrs-plate.png)
 
 **Gift** Take 30% less Health damage.
 
@@ -62,7 +63,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Gravedigger's Lantern
 
-![Gravedigger's Lantern native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/gravediggers-lantern.png)
+![Gravedigger's Lantern card showing a teal lantern in a brass frame, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/gravediggers-lantern.png)
 
 **Gift** +40% damage to lone targets.
 
@@ -70,7 +71,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Hangman's Quarrel
 
-![Hangman's Quarrel native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/hangmans-quarrel.png)
+![Hangman's Quarrel card showing a steel-tipped, red-fletched bolt, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/hangmans-quarrel.png)
 
 **Gift** +60% damage to foes below 20% Health.
 
@@ -78,7 +79,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Emberwake Blade
 
-![Emberwake Blade native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/emberwake-blade.png)
+![Emberwake Blade card showing an orange-edged sword, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/emberwake-blade.png)
 
 **Gift** Every 4th hit on a surviving foe applies Burn.
 
@@ -86,7 +87,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Leadheart Locket
 
-![Leadheart Locket native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/leadheart-locket.png)
+![Leadheart Locket card showing a plum pendant on a gold loop, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/leadheart-locket.png)
 
 **Gift** Below half Health, take 35% less Health damage.
 
@@ -94,7 +95,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### The Borrowed Halo
 
-![The Borrowed Halo native equipment card, with the item icon, Gift, and red Curse text](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/the-borrowed-halo.png)
+![The Borrowed Halo card showing a tilted gold ring, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/the-borrowed-halo.png)
 
 **Gift** Survive 1 lethal hit per battle. Block Health hits for 2s.
 
@@ -102,14 +103,18 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ## Compatibility
 
-Cursed Equipment uses the native equipment slots, restrictions, Blacksmith and item saves. Spellglass affects circular projectile searches that deliver native damage effects. Fang, Lantern, Quarrel and Emberwake use unit-sourced hits that reach enemy Health. Burn and other status ticks skip those four effects. Emberwake applies native Burn and requires a living wearer with positive Health.
-
-Plate, Locket and Halo apply to the wearer's remaining Health damage after the wall and Shields. Chalice delays health heals and overheals by three simulation seconds. Losing the last Chalice or dying cancels pending heals. Continue restores equipment and starts a new combat state.
+- Tested on Super Fantasy Kingdom **0.8.068** at 1× and 1.5× UI scale. The combined tests used a copied Human kingdom, virtual controller input, and controlled combat fixtures. [Playtest notes](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/docs/release-0.2.3/README.md)
+- Tested alongside [Cursed Relics](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-relics) 0.2.9, [Nights of Terror](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/NightsOfTerror/) 0.1.3 and [Hold the Line](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/HoldTheLine/) 0.2.3. All three are optional.
+- Cursed Equipment uses the native equipment slots, restrictions, item pickups and saves. Losing the last Bitter Chalice or dying cancels pending heals.
+- Spellglass affects damaging circular projectile searches. Fang, Lantern, Quarrel and Emberwake use qualifying unit hits that reach enemy Health. Plate, Locket and Halo apply to Health damage after the wall and Shields.
 
 ## Installation
 
-1. In Thunderstore Mod Manager, open a Super Fantasy Kingdom profile with BepInEx. Import the local archive, or install Cursed Equipment once the listing is available.
-2. Select **Start modded**. For manual installation, place `plugins/CursedEquipment.dll` from the archive in the profile's `BepInEx/plugins` directory.
+1. In Thunderstore Mod Manager or r2modman, open a **Super Fantasy Kingdom** profile.
+2. Install **CursedEquipment** by **GKJ**. Allow the manager to install [BepInExPack](https://thunderstore.io/c/super-fantasy-kingdom/p/BepInEx/BepInExPack/) and [HideManagerGameObject Config](https://thunderstore.io/c/super-fantasy-kingdom/p/BepInEx/HideManagerGameObject_Config/).
+3. Select **Start modded** and visit the Blacksmith. For manual installation, place `plugins/CursedEquipment.dll` from the ZIP in your profile's `BepInEx/plugins` directory.
+
+See the [contribution guide](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/CONTRIBUTING.md) for builds, tests and issue reports. The original mod code is available under the [MIT License](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/LICENSE). Super Fantasy Kingdom and its assets retain their respective ownership.
 
 ## Support
 

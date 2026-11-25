@@ -9,7 +9,7 @@ Equipment uses the same original trim, crimson title ribbon, corner sigil and ic
 - [Ten individual 1.5× card PNGs and selectable Gift and Curse text](../../README.md#screenshots) · [Thunderstore Details draft](../../thunderstore/DETAILS.md#screenshots)
 - [Bitter Chalice before and after at 1.5×](../screenshots/0.2.3/before-after-bitter-chalice.png)
 
-The native faces shared a width and height of **240 × 320 px at 1×** and **360 × 480 px at 1.5×** in all three states. The native image mesh, texture coordinates and rounding sprite matched between the ordinary item, the cursed item, and the cursed relic. At both scales the Equipment roster had at least **15.8 card units** of side clearance and **5.3** at the bottom. Signed percentages remained on one line. All ten Thunderstore draft image URLs returned HTTP 404 while awaiting the public `v0.2.3` ref.
+The native faces shared a width and height of **240 × 320 px at 1×** and **360 × 480 px at 1.5×** in all three states. The native image mesh, texture coordinates and rounding sprite matched between the ordinary item, the cursed item, and the cursed relic. At both scales the Equipment roster had at least **15.8 card units** of side clearance and **5.3** at the bottom. Signed percentages remained on one line. All ten Thunderstore images point to the `v0.2.3` GitHub tag.
 
 ## Item sprites
 
@@ -21,7 +21,7 @@ The [ground comparison](../screenshots/0.2.3/ground-icons-detail.png) shows cont
 
 The private window ran Super Fantasy Kingdom 0.8.068 with Equipment 0.2.3, Relics 0.2.8, Nights of Terror 0.1.3, Hold the Line 0.2.3 and the remaining twelve GKJ DLLs from the installed Controller Test profile. The DLL inventory and complete archive checksums are recorded in [the runtime transcript](results.txt).
 
-Equipment ZIP SHA-256 `ba61dd7d9e6e18c92d3993299fd1f2dbd7281bcb473bfbe8b560023224d382b4`. Loaded Equipment DLL SHA-256 `d649a9315e008452a2f29e8cad70290a99b9b364508255a74ec4903aa9e198a3`. The DLL extracted from the ZIP passed 72 managed checks.
+The original local playtest ZIP SHA-256 was `ba61dd7d9e6e18c92d3993299fd1f2dbd7281bcb473bfbe8b560023224d382b4`. The release ZIP SHA-256 is `8614c01ecc29d42b4fbdc1ac14e826323acc059cc6e90dabd287707b708a9540`. Both contain the same Equipment DLL, SHA-256 `d649a9315e008452a2f29e8cad70290a99b9b364508255a74ec4903aa9e198a3`. The DLL passed 72 managed checks. The release changes package art and listing material.
 
 The virtual controller bought one Bitter Chalice for 2 Beer. A Magnet and native drop callbacks transferred it to the Archer. The former wearer regained normal healing, and the Archer received one delayed amplified heal. Death canceled a queued heal. Continue loaded the native checkpoint with the Chalice on the Archer and Vulture's Covenant still held. A controlled dusk sample verified that Glass Crown set maximum Health to 13.01 from 17.34, Chalice and Red Mercy delivered 3.9 HP from a 2 HP heal, and Locket capped amplified overheal at 75% of the reduced maximum. [Transfer](../screenshots/0.2.3/transferred-archer.png) · [Continue](../screenshots/0.2.3/continued-archer.png)
 
@@ -32,3 +32,7 @@ All ten effects passed again during day 14. The Borrowed Halo rearmed for the ne
 Six foreground cases passed 444 assertions. The player and loader logs captured one shared Unity exception at the end of the 1× frame run, in the game's `UIGamepadCursor.OnControlsChanged` from `OnDisable` during shutdown. The stack contained no Equipment call, and the frame run finished all assertions. The combat logs had no error or exception entries. The private player closed and released the mutex.
 
 The offer rotation, icon placement, incoming survivability and item damage samples used the documented fixtures. This verifies the native timers, settlement and selected effect transitions in the copied Human kingdom. Physical input, fully manual dragging and unassisted combat balance remain outside this pass.
+
+## Release partner smoke
+
+The focused follow-up used the exact Cursed Relics 0.2.9 DLL `fa3f1bf894a008aa6d06fdcc11cb03e4b5a8e42a9e9ac416a0b511a51df2b934` from its verified gameplay ZIP, with Equipment 0.2.3, Hold the Line 0.2.3, Nights of Terror 0.1.3 and the other Controller Test partners. Two foreground copied-save passes completed **128 assertions**. The probe opened a native kingdom chest at a controlled location, claimed Bell of the Last Watch with a virtual controller, then bought and transferred Bitter Chalice through the Blacksmith route. Chalice and Red Mercy delivered 3.9 HP from a 2 HP input. Glass Crown and Locket matched the expected maximum Health and healing cap. Continue restored the Chalice and Vulture's Covenant. The native `UIGamepadCursor.OnDisable` exception recurred during shutdown after the purchase pass. The separate Continue run produced no error or exception entries. The private player closed and the mutex was released. [Smoke transcript and hashes](partner-smoke-0.2.9.txt)

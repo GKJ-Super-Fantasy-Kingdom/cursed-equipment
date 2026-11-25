@@ -1,0 +1,189 @@
+Cursed Equipment release smoke with Cursed Relics 0.2.9
+Game 0.8.068 | private copied Human day-13 kingdom | 1x UI | foreground
+
+CursedEquipment staged ZIP ba61dd7d9e6e18c92d3993299fd1f2dbd7281bcb473bfbe8b560023224d382b4 DLL d649a9315e008452a2f29e8cad70290a99b9b364508255a74ec4903aa9e198a3
+CursedRelics staged ZIP 3ab200441cc32a39e12f1b7a18eb10af541559537a64b477be72aab01b981126 DLL fa3f1bf894a008aa6d06fdcc11cb03e4b5a8e42a9e9ac416a0b511a51df2b934
+HoldTheLine staged ZIP 95413c2c0180cd9e465acc02d20123cb9972d14ce0433c0f57943bf067255d89 DLL 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb
+NightsOfTerror staged ZIP 0dcd77166ff946e041af1cc7b64cc17d322b0dd47ba2dbba613c650b2d5be7e1 DLL 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb
+
+combined-pad 117 checks passed
+player.log SHA-256 ffc66daeb0110071947a5e6a95eeab7a9651f97cd20cb39e3621213a7a68dc77 | 1 error or exception entries
+NullReferenceException
+loader.log SHA-256 6595d42c3455b5a2a62b24fba549d1f433047b6bcc5e5f69e77e91b159a591cf | 1 error or exception entries
+[Error  : Unity Log] NullReferenceException
+PASS installed game 0.8.068
+LOADED gkj.cursedrelics 0.2.9 fa3f1bf894a008aa6d06fdcc11cb03e4b5a8e42a9e9ac416a0b511a51df2b934 assembly=0.2.9.0
+LOADED gkj.holdtheline 0.2.3 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb assembly=0.2.3.0
+LOADED gkj.local.cursedequipment.qa 0.1.0 c965b95c45fd4d9fd0c89baac4c9fe73a896677824b466abea68fca5342a41ba assembly=1.0.0.0
+LOADED gkj.nightsofterror 0.1.3 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb assembly=0.1.3.0
+LOADED gkj.sfk.amayawithoutcooldown 0.1.2 f486026e0a5b42df0e7476ddc577f5ea936224492018b62c926c7e46a25c6f76 assembly=0.1.2.0
+LOADED gkj.sfk.caravancommissions 0.1.3 d18b191c336e20d4f8ce8dfc195653f809fe3e6855486755e7ff1edc03cf90cd assembly=0.1.3.0
+LOADED gkj.sfk.cursedequipment 0.2.3 d649a9315e008452a2f29e8cad70290a99b9b364508255a74ec4903aa9e198a3 assembly=0.2.3.0
+LOADED gkj.sfk.kingdomcharters 0.1.2 20799693733ff62dbc0bb75a1f9a1b300f971b27d1d76d38a4dd75edfae751b6 assembly=0.1.2.0
+LOADED gkj.sfk.workerpresets 0.1.3 39f3d807f85964fbfc59013c8d696a75f16fc5cdb5605fc6b7c75d10a2759814 assembly=0.1.3.0
+LOADED gkj.superfantasykingdom.weeklyhermit 0.1.2 db605d1e05d9fc9421a82ec6573750c6355e90ce361ed3fabb0e61e789dce58a assembly=0.1.2.0
+LOADED sfk.dailycaravan 0.1.3 6994a5da291a0697476dc65867ba6c1b0b30b6be1248a6e46b9f15c1ce71470d assembly=0.1.3.0
+LOADED sfk.daybook 0.4.2 7be397095d19f396e9ec1d691c5868a8beb2f48edbe5eb5316f98a53e93cda50 assembly=0.4.2.0
+LOADED sfk.pinabuildcost 0.2.1 be8b512fc80a2d3869d7aa2cec745dcef0d41559f80cf2af7316037f008512a1 assembly=0.2.1.0
+LOADED sfk.productionbottlenecks 0.2.3 85000421d2a7a1f32b95c082b8ce277d0fb048f2e0fbd7571d724633fac1656b assembly=0.2.3.0
+LOADED sfk.relicloadoutjournal 0.1.2 2b60d8f5adf817a3a046fd10d671da3dbb1b46fdd589123e21e39631d6141756 assembly=0.1.2.0
+LOADED sfk.visitorcalendar 0.1.2 a6e130b005aee2260544370fe57bdf0892d9d3323439d39d81b4a6e54977ea83 assembly=0.1.2.0
+LOADED sfk.weeklycontracts 0.1.2 2c57bff98e78fe2de674d4c7b392a65428095e65cf4c4d7b8a04f5c13af96ca8 assembly=0.1.2.0
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.9 and Equipment 0.2.3 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS active input scheme Gamepad and UI scale 1
+PASS native chest picker offered Bell beside ordinary relics at a controlled location
+PASS D-pad focused Bell in the native chest picker
+PASS native chest claim added Bell with one controller confirmation
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER GKJ_CE_EmberwakeBlade, Tome, Knife
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back closed the unaltered Blacksmith
+PASS mixed cursed card retained visible native rarity and kingdom badges
+PASS Sword renders its expected trim and icon field
+PASS GKJ_CE_BitterChalice renders its expected trim and icon field
+PASS Bow renders its expected trim and icon field
+PASS native hover retains the shared trim
+PASS native selection retains the shared trim
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS D-pad focused the cursed offer in the mixed row
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS native Back closed the mixed row
+PASS copied kingdom running at normal speed
+PASS ten distinct items with unique native sprites
+PASS active scale 1
+PASS copied kingdom has its native Forge
+PASS native cards shown for roster page 1
+PASS Cracked Spellglass fits its shared frame
+PASS Cracked Spellglass renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Cracked Spellglass | side=22.8 bottom=5.3 card units
+PASS Bitter Chalice fits its shared frame
+PASS Bitter Chalice renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Bitter Chalice | side=15.8 bottom=6.4 card units
+PASS Cracked Duelist's Mirror fits its shared frame
+PASS Cracked Duelist's Mirror renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Cracked Duelist's Mirror | side=15.8 bottom=5.6 card units
+PASS D-pad reached the native Buy button for Cracked Spellglass
+PASS D-pad reached the native Buy button for Bitter Chalice
+PASS D-pad reached the native Buy button for Cracked Duelist's Mirror
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 1
+PASS native cards shown for roster page 2
+PASS Duelist's Fang fits its shared frame
+PASS Duelist's Fang renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Duelist's Fang | side=16.4 bottom=5.3 card units
+PASS Duelist's Fang keeps its signed percentage together at 1.0x
+PASS Duelist's Fang keeps its signed percentage together at 1.0x
+PASS Martyr's Plate fits its shared frame
+PASS Martyr's Plate renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Martyr's Plate | side=17.4 bottom=5.3 card units
+PASS Gravedigger's Lantern fits its shared frame
+PASS Gravedigger's Lantern renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Gravedigger's Lantern | side=15.8 bottom=8.5 card units
+PASS Gravedigger's Lantern keeps its signed percentage together at 1.0x
+PASS Gravedigger's Lantern keeps its signed percentage together at 1.0x
+PASS D-pad reached the native Buy button for Duelist's Fang
+PASS D-pad reached the native Buy button for Martyr's Plate
+PASS D-pad reached the native Buy button for Gravedigger's Lantern
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 2
+PASS native cards shown for roster page 3
+PASS Hangman's Quarrel fits its shared frame
+PASS Hangman's Quarrel renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Hangman's Quarrel | side=15.8 bottom=13.3 card units
+PASS Hangman's Quarrel keeps its signed percentage together at 1.0x
+PASS Hangman's Quarrel keeps its signed percentage together at 1.0x
+PASS Emberwake Blade fits its shared frame
+PASS Emberwake Blade renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Emberwake Blade | side=15.8 bottom=5.9 card units
+PASS Leadheart Locket fits its shared frame
+PASS Leadheart Locket renders the curse red while Gift keeps native color
+PASS PADDING 1.0x Leadheart Locket | side=15.8 bottom=13.3 card units
+PASS D-pad reached the native Buy button for Hangman's Quarrel
+PASS D-pad reached the native Buy button for Emberwake Blade
+PASS D-pad reached the native Buy button for Leadheart Locket
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 3
+PASS native cards shown for roster page 4
+PASS The Borrowed Halo fits its shared frame
+PASS The Borrowed Halo renders the curse red while Gift keeps native color
+PASS PADDING 1.0x The Borrowed Halo | side=16.8 bottom=5.3 card units
+PASS D-pad reached the native Buy button for The Borrowed Halo
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 4
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS D-pad focused paid Chalice
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS fixture granted Vulture's Covenant before the copied checkpoint
+PASS Glass Crown changed the wearer's actual max Health from 17.34 to 13.01
+PASS Chalice delayed a Red Mercy heal
+PASS Chalice and Red Mercy delivered 3.9 HP, observed 3.9
+PASS Locket capped amplified healing at 75% of Glass Crown maximum (9.7575), observed 9.7575
+PASS ending the controlled dusk restored the native maximum
+PASS native save wrote the purchased Chalice
+PASS copied kingdom running at normal speed
+PASS copied kingdom running at normal speed
+PASS recipient death canceled the queue without revival
+FINISHED
+
+combined-reload 11 checks passed
+player.log SHA-256 3a6c4bf1aaafa5554dd85789628c21742234d897e9dd11bd75b2dde6e43c928f | 0 error or exception entries
+loader.log SHA-256 699936562fd04a51a80168fe3aba76c91b738c8555afbdb6dbd1065872cc65cb | 0 error or exception entries
+PASS installed game 0.8.068
+LOADED gkj.cursedrelics 0.2.9 fa3f1bf894a008aa6d06fdcc11cb03e4b5a8e42a9e9ac416a0b511a51df2b934 assembly=0.2.9.0
+LOADED gkj.holdtheline 0.2.3 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb assembly=0.2.3.0
+LOADED gkj.local.cursedequipment.qa 0.1.0 c965b95c45fd4d9fd0c89baac4c9fe73a896677824b466abea68fca5342a41ba assembly=1.0.0.0
+LOADED gkj.nightsofterror 0.1.3 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb assembly=0.1.3.0
+LOADED gkj.sfk.amayawithoutcooldown 0.1.2 f486026e0a5b42df0e7476ddc577f5ea936224492018b62c926c7e46a25c6f76 assembly=0.1.2.0
+LOADED gkj.sfk.caravancommissions 0.1.3 d18b191c336e20d4f8ce8dfc195653f809fe3e6855486755e7ff1edc03cf90cd assembly=0.1.3.0
+LOADED gkj.sfk.cursedequipment 0.2.3 d649a9315e008452a2f29e8cad70290a99b9b364508255a74ec4903aa9e198a3 assembly=0.2.3.0
+LOADED gkj.sfk.kingdomcharters 0.1.2 20799693733ff62dbc0bb75a1f9a1b300f971b27d1d76d38a4dd75edfae751b6 assembly=0.1.2.0
+LOADED gkj.sfk.workerpresets 0.1.3 39f3d807f85964fbfc59013c8d696a75f16fc5cdb5605fc6b7c75d10a2759814 assembly=0.1.3.0
+LOADED gkj.superfantasykingdom.weeklyhermit 0.1.2 db605d1e05d9fc9421a82ec6573750c6355e90ce361ed3fabb0e61e789dce58a assembly=0.1.2.0
+LOADED sfk.dailycaravan 0.1.3 6994a5da291a0697476dc65867ba6c1b0b30b6be1248a6e46b9f15c1ce71470d assembly=0.1.3.0
+LOADED sfk.daybook 0.4.2 7be397095d19f396e9ec1d691c5868a8beb2f48edbe5eb5316f98a53e93cda50 assembly=0.4.2.0
+LOADED sfk.pinabuildcost 0.2.1 be8b512fc80a2d3869d7aa2cec745dcef0d41559f80cf2af7316037f008512a1 assembly=0.2.1.0
+LOADED sfk.productionbottlenecks 0.2.3 85000421d2a7a1f32b95c082b8ce277d0fb048f2e0fbd7571d724633fac1656b assembly=0.2.3.0
+LOADED sfk.relicloadoutjournal 0.1.2 2b60d8f5adf817a3a046fd10d671da3dbb1b46fdd589123e21e39631d6141756 assembly=0.1.2.0
+LOADED sfk.visitorcalendar 0.1.2 a6e130b005aee2260544370fe57bdf0892d9d3323439d39d81b4a6e54977ea83 assembly=0.1.2.0
+LOADED sfk.weeklycontracts 0.1.2 2c57bff98e78fe2de674d4c7b392a65428095e65cf4c4d7b8a04f5c13af96ca8 assembly=0.1.2.0
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.9 and Equipment 0.2.3 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS Continue restored one purchased Chalice on the recipient, former wearer has none
+PASS copied kingdom running at normal speed
+PASS Continued wearer delayed healing
+PASS copied kingdom running at normal speed
+PASS Continued wearer held healing before its deadline
+PASS Continued wearer got exactly one +50% heal
+PASS Continue also restored Vulture's Covenant
+FINISHED

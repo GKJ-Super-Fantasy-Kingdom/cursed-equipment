@@ -40,10 +40,10 @@ public sealed partial class Probe
             && Chainloader.PluginInfos[combinedPackages[1]].Metadata.Version.ToString() == "0.1.3",
             "all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3");
         if (ExpansionPair)
-            Check(Chainloader.PluginInfos[combinedPackages[2]].Metadata.Version.ToString()=="0.2.8"
+            Check(Chainloader.PluginInfos[combinedPackages[2]].Metadata.Version.ToString()=="0.2.9"
                 && Chainloader.PluginInfos[combinedPackages[3]].Metadata.Version.ToString()=="0.2.3"
                 && Chainloader.PluginInfos.Values.Count(p=>p.Metadata.GUID!="gkj.local.cursedequipment.qa" && p.Instance)==16,
-                "Relics 0.2.8 and Equipment 0.2.3 loaded with the 14 GKJ profile mods");
+                "Relics 0.2.9 and Equipment 0.2.3 loaded with the 14 GKJ profile mods");
     }
 
     private IEnumerator Combined(AddressablesManager catalog, UnitBase hero, float scale)
@@ -102,6 +102,7 @@ public sealed partial class Probe
         yield return new WaitForSecondsRealtime(.4f);
         Check(SettingsManager.Instance.GetUIScaling()==scale && GamepadManager.Instance.IsGamepadInUse()==padMode,
             "active input scheme "+input.currentControlScheme+" and UI scale "+scale);
+        if (ExpansionPair && phase=="combined-pad") yield return ReleaseRelicChest(pad);
 
         var forge = FindObjectOfType<BuildingForge>();
         Check(forge, "copied kingdom has live Blacksmith");
@@ -413,6 +414,36 @@ public sealed partial class Probe
         yield return Back(shop,pad,null,null);
         Check(!shop.gameObject.activeInHierarchy,"controller Back closed the shared frame comparison");
         if (manager.IsOpen()) manager.CloseOverlay();
+    }
+
+    private IEnumerator ReleaseRelicChest(Gamepad pad)
+    {
+        const string bell="gkj_CR_LastWatch";
+        var mix=AccessTools.Method(AccessTools.TypeByName("CursedRelics.Rewards"),"Mix");
+        var run=Guid.Parse(GameDataManager.Instance.GetRunID());
+        var normal=new[]{"Cookies","BushFinder","Fruitarian"};
+        int day=DaytimeManager.Instance.CurrentDay();
+        var position=Enumerable.Range(800,3000).First(x=>
+        {
+            var key=FormattableString.Invariant($"{run:N}/{day}/DropKingdomChest/{x}/-12/0");
+            return ((string[])mix.Invoke(null,new object[]{normal,key,null})).Contains(bell);
+        });
+        Instantiate(PrefabsManager.Instance.GetDropKingdomChest(),new Vector3(position,-12),Quaternion.identity).Open();
+        yield return new WaitForSecondsRealtime(1.55f);
+        var overlay=OverlayManager.Instance;
+        var cards=overlay.GetMerchant().GetComponentsInChildren<UICardRelic>();
+        var reward=cards.Single(card=>Traverse.Create(card).Field("m_RelicIdentifier").GetValue<string>()==bell);
+        Check(overlay.IsOpen() && cards.Length==3,"native chest picker offered Bell beside ordinary relics at a controlled location");
+        var target=reward.GetCardButton();
+        for (int move=0;move<8 && EventSystem.current.currentSelectedGameObject!=target.gameObject;move++)
+            yield return Press(pad,DirectionTo(target,GamepadButton.DpadUp));
+        Check(EventSystem.current.currentSelectedGameObject==target.gameObject,"D-pad focused Bell in the native chest picker");
+        CaptureScene("release-relic-picker");
+        yield return new WaitForSecondsRealtime(3f);
+        yield return Press(pad,GamepadButton.South);
+        yield return new WaitForSecondsRealtime(.65f);
+        Check(RelicManager.Instance.HasRelic(bell),"native chest claim added Bell with one controller confirmation");
+        if (overlay.IsOpen()) overlay.CloseOverlay();
     }
 
     private static bool SameArt(Image a,Image b) => a && b && a.enabled && b.enabled &&

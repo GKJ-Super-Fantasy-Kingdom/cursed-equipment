@@ -4,6 +4,7 @@
 
 - Shared the Cursed Relics 0.2.8 artwork and native focus treatment for cursed cards. Added more clearance around Gift and Curse text and kept signed percentages together when a line wraps.
 - Redrew all ten item icons on the game's 16 × 16 pixel grid with compact silhouettes and thin outlines. The Blacksmith and native ground drops use the same sprites.
+- Added the original copper-framed, cursed breastplate package logo.
 
 ## 0.2.2
 

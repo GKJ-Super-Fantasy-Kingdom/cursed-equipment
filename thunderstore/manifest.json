@@ -1,7 +1,7 @@
 {
   "name": "CursedEquipment",
-    "version_number": "0.2.3",
-  "website_url": "",
+  "version_number": "0.2.3",
+  "website_url": "https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment",
   "description": "Ten pieces of native equipment with unique Gifts and Curses for their wearers.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305",

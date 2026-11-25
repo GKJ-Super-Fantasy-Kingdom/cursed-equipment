@@ -1,4 +1,4 @@
-param([ValidateSet('mouse','mouse-small','pad','pad-large','reload','content')] [string]$Phase = 'pad')
+param([ValidateSet('mouse','mouse-small','pad','pad-large','reload','content','roster','roster-large')] [string]$Phase = 'pad')
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path "$PSScriptRoot/../..").Path
 $player = (Resolve-Path "$root/.analysis/player").Path

@@ -1,6 +1,6 @@
 # Equipment ideas for later playtests
 
-The first build contains Spellglass, Chalice and Mirror. These earlier proposals remain candidates for separate balance passes.
+The table records the original proposals. The 0.2.0 build implements seven of them with the playtest rules in the [README](../README.md). Rootbound Longbow, Iron Pilgrim Boots, and Miser’s Quiver remain candidates.
 
 | Candidate | Gift | Curse |
 | --- | --- | --- |

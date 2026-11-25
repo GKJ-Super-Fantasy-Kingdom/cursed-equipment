@@ -13,13 +13,27 @@ namespace CursedEquipment
         internal const string Glass = "GKJ_CE_CrackedSpellglass";
         internal const string Cup = "GKJ_CE_BitterChalice";
         internal const string Mirror = "GKJ_CE_CrackedDuelistsMirror";
+        internal const string Fang = "GKJ_CE_DuelistsFang";
+        internal const string Plate = "GKJ_CE_MartyrsPlate";
+        internal const string Lantern = "GKJ_CE_GravediggersLantern";
+        internal const string Quarrel = "GKJ_CE_HangmansQuarrel";
+        internal const string Blade = "GKJ_CE_EmberwakeBlade";
+        internal const string Locket = "GKJ_CE_LeadheartLocket";
+        internal const string Halo = "GKJ_CE_BorrowedHalo";
 
-        private static readonly Dictionary<string, (string title, string text, string art)> Cards =
-            new Dictionary<string, (string, string, string)>
+        private static readonly Dictionary<string, (string title, string gift, string curse, string art)> Cards =
+            new Dictionary<string, (string, string, string, string)>
             {
-                [Glass] = ("Cracked Spellglass", "Gift: Damaging circles gain 40% radius.\nCurse: Each target takes 20% less damage.", "glass"),
-                [Cup] = ("Bitter Chalice", "Gift: Receive 50% more healing.\nCurse: Heals arrive 3 seconds late.", "chalice"),
-                [Mirror] = ("Cracked Duelist's Mirror", "Gift: Double the first hit to each monster's health.\nCurse: Later hits deal 25% less.", "mirror")
+                [Glass] = ("Cracked Spellglass", "Damaging circles gain 40% radius.", "Each target takes 20% less damage.", "glass"),
+                [Cup] = ("Bitter Chalice", "Receive 50% more healing.", "Heals arrive 3 seconds late.", "chalice"),
+                [Mirror] = ("Cracked Duelist's Mirror", "Double the first hit to each monster's health.", "Later hits deal 25% less.", "mirror"),
+                [Fang] = ("Duelist's Fang", "+10% damage per repeat hit, up to +50%.", "Switching targets costs 30% damage on that hit.", "fang"),
+                [Plate] = ("Martyr's Plate", "Take 30% less Health damage.", "Receive 50% less healing.", "plate"),
+                [Lantern] = ("Gravedigger's Lantern", "+40% damage to lone targets.", "-15% if an ally hit the target in the last 2s.", "lantern"),
+                [Quarrel] = ("Hangman's Quarrel", "+60% damage to foes below 20% Health.", "-15% against healthier foes.", "quarrel"),
+                [Blade] = ("Emberwake Blade", "Every 4th hit on a surviving foe applies Burn.", "Each Burn costs 5% max Health, down to 1 HP.", "emberwake"),
+                [Locket] = ("Leadheart Locket", "Below half Health, take 35% less Health damage.", "Heals stop at 75% Health.", "locket"),
+                [Halo] = ("The Borrowed Halo", "Survive 1 lethal hit per battle. Block Health hits for 2s.", "Deal half damage for 8s.", "halo")
             };
 
         // All equipment tests read the native unit inventory at the point of use.
@@ -82,7 +96,7 @@ namespace CursedEquipment
         private static bool Description(Item __instance, ref string __result)
         {
             if (!Cards.TryGetValue(__instance.GetIdentifier() ?? "", out var card)) return true;
-            __result = card.text;
+            __result = $"Gift: {card.gift}\n<color=#991F29>Curse: {card.curse}</color>";
             return false;
         }
     }

@@ -41,7 +41,8 @@ namespace CursedEquipment
             if (!(health is MonsterBaseHealth monster) || !(dmg.origin is UnitBase wearer)
                 || takeDamage <= 0f || monster.GetHitpoints() == 0f) return takeDamage;
             bool first = History.GetOrCreateValue(monster).Add(wearer.GetIdentifier());
-            return Catalog.Wears(wearer, Catalog.Mirror) ? takeDamage * (first ? 2f : .75f) : takeDamage;
+            float scaled = Catalog.Wears(wearer, Catalog.Mirror) ? takeDamage * (first ? 2f : .75f) : takeDamage;
+            return Arsenal.ScaleHit(monster, wearer, dmg.isStatus, scaled);
         }
     }
 }

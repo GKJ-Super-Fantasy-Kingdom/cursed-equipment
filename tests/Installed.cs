@@ -21,6 +21,9 @@ public static class Installed
     private const string Glass = "GKJ_CE_CrackedSpellglass";
     private const string Cup = "GKJ_CE_BitterChalice";
     private const string Mirror = "GKJ_CE_CrackedDuelistsMirror";
+    private static readonly string[] Cards = { Glass, Cup, Mirror, "GKJ_CE_DuelistsFang", "GKJ_CE_MartyrsPlate",
+        "GKJ_CE_GravediggersLantern", "GKJ_CE_HangmansQuarrel", "GKJ_CE_EmberwakeBlade",
+        "GKJ_CE_LeadheartLocket", "GKJ_CE_BorrowedHalo" };
     private const BindingFlags Static = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
     private static Type Mod(string name) { return plugin.GetType("CursedEquipment." + name, true); }
@@ -206,17 +209,17 @@ public static class Installed
                     method.DeclaringType.Name + "." + method.Name + " transforms installed IL");
             }
         }
-        var ids = new[] { Glass, Cup, Mirror };
         var foreign = Fixture<Item>(); Set(foreign, "identifier", "ForeignGear");
         Check((bool)Call("Catalog","Title",foreign,null), "other packs retain native labels");
-        foreach (var id in ids)
+        foreach (var id in Cards)
         {
             var item = Fixture<Item>(); Set(item,"identifier",id);
             var args = new object[] {item, null};
             Check(!(bool)Call("Catalog","Description",args) && ((string)args[1]).Contains("Gift:") &&
-                  ((string)args[1]).Contains("\nCurse:"), id + " puts Gift and Curse in the same native description");
+                  ((string)args[1]).Contains("\n<color=#991F29>Curse:") && ((string)args[1]).EndsWith("</color>"),
+                  id + " puts Gift and a red Curse on the same native card");
         }
-        foreach (var art in new[] {"glass","chalice","mirror"})
+        foreach (var art in new[] {"glass","chalice","mirror","fang","plate","lantern","quarrel","emberwake","locket","halo"})
             using (var s = plugin.GetManifestResourceStream("items." + art + ".png"))
                 Check(s != null && s.Length > 100, art + " sprite embedded");
     }
@@ -236,10 +239,56 @@ public static class Installed
         Check(unit.GetItems().SequenceEqual(items.Values<string>()) && unit.GetItems().Take(original.Count).SequenceEqual(original),
             "copied checkpoint inventory round-trips ordinary and cursed IDs through Entity.SetItems");
     }
+    private static void Expansion()
+    {
+        var a = UnitWith(21, Cards[3]); var b = UnitWith(22, Cards[5]);
+        var target = Fixture<MonsterHealth>(); var second = Fixture<MonsterHealth>();
+        Set(target, "Hitpoints", 100f); Set(second, "Hitpoints", 100f);
+        var stats = new Stats { maxHealth = new Stat(100f) };
+        Set(target, "Stats", stats); Set(second, "Stats", stats);
+        Check(Strike(target,a,100)==100 && Strike(target,a,100)==110,"Fang scales repeat hits");
+        for (int i=0;i<7;i++) Strike(target,a,100);
+        Check(Strike(target,a,100)==150 && Strike(second,a,100)==70,"Fang caps at 50% and penalizes a target switch");
+        var now = Mod("Arsenal").GetProperty("Now",Static);
+        now.SetValue(null,10f);
+        Check(Strike(second,b,100)==140,"Lantern grants the isolated bonus");
+        Strike(second,a,100);
+        Check(Strike(second,b,100)==85,"Lantern penalizes a recent shared target");
+        now.SetValue(null,12f);
+        Check(Strike(second,b,100)==140,"Lantern drops expired ally pressure");
+        a.SetItems(new List<string>{Cards[6]});
+        Set(second,"Hitpoints",20f);
+        Check(Strike(second,a,100)==85,"Quarrel penalizes the exact 20% boundary");
+        Set(second,"Hitpoints",19f);
+        Check(Strike(second,a,100)==160,"Quarrel rewards lower health");
+
+        var health = HealthFor(a);
+        Set(health,"Stats",stats);
+        a.SetItems(new List<string>{Cards[4],Cards[8]});
+        var args = new object[] {health,new Heal {healAmount=100,healType=HealType.OverHeal},0f};
+        Check((bool)Call("Arsenal","LimitHeal",args) && ((Heal)args[1]).healAmount==25,"Locket caps overheal at 75% after Plate");
+        Set(health,"Hitpoints",40f);
+        var damage=new object[]{health,100f,0f};
+        Check((bool)Call("Arsenal","ProtectWearer",damage) && Math.Abs((float)damage[1]-45.5f)<.01f,
+            "Plate and low-health Locket compose on wearer health loss");
+        args[1]=new Heal {healAmount=1,healType=HealType.Health};
+        Check((bool)Call("Arsenal","LimitHeal",args) && ((Heal)args[1]).healAmount==.5f,"Plate halves an ordinary health heal");
+        Set(health,"Hitpoints",80f);
+        Check(!(bool)Call("Arsenal","LimitHeal",args),"Locket blocks health gain above its cap");
+
+        a.SetItems(new List<string>{Cards[9]});
+        Check((float)Call("Arsenal","ApplyHalo",a,25f,25f,13,true)==24,"Halo leaves one HP on its first lethal hit");
+        Check((float)Call("Arsenal","ApplyHalo",a,1f,25f,13,true)==0 && Strike(target,a,100)==50,"Halo blocks damage and reduces output after saving");
+        now.SetValue(null,14f);
+        Check((float)Call("Arsenal","ApplyHalo",a,1f,25f,13,true)==25,"Halo expires and cannot save twice the same battle");
+        now.SetValue(null,20f);
+        Check(Strike(target,a,100)==100 && (float)Call("Arsenal","ApplyHalo",a,25f,25f,14,true)==24,"Halo curse expires and next battle can trigger");
+    }
+
     public static void Run(string dll, string copiedSave)
     {
         plugin = Assembly.LoadFrom(dll);
-        NativeHooks(); Circles(); Mirrors(); Chalices(); CopiedSave(copiedSave);
+        NativeHooks(); Circles(); Mirrors(); Chalices(); Expansion(); CopiedSave(copiedSave);
         Console.WriteLine(checks + " checks passed.");
     }
 }

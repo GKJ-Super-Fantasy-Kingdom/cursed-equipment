@@ -108,6 +108,11 @@ public sealed partial class Probe : BaseUnityPlugin
         Check(ids.All(id => catalog.GetItem(id) && catalog.GetItem(id).GetIcon() && catalog.GetItem(id).SoldAtBlacksmith()
             && catalog.GetAllItemIdentifiers().Count(x => x == id) == 1), "registered each item and Forge flag once");
         var unit = UnitManager.Instance.GetHero();
+        if (phase.StartsWith("roster"))
+        {
+            yield return Roster(catalog,unit,scale);
+            yield break;
+        }
         if (phase.StartsWith("combined-"))
         {
             yield return Combined(catalog, unit, scale);

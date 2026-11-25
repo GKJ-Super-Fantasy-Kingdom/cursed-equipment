@@ -1,0 +1,497 @@
+Super Fantasy Kingdom 0.8.068 | Cursed Equipment 0.2.1 combined foreground QA
+
+Archive and DLL SHA-256
+Hold the Line | 95413c2c0180cd9e465acc02d20123cb9972d14ce0433c0f57943bf067255d89 | 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb
+Nights of Terror | 0dcd77166ff946e041af1cc7b64cc17d322b0dd47ba2dbba613c650b2d5be7e1 | 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb
+Cursed Relics | 476b0c57c05c5b2322967af5fa4ed05f3fc5a43b2ec3f529c0f955b4cc2f5395 | 7bd2af240862282a7b26a1d9f35cecdfe02a1032ac9010c4b96394daa3041731
+Cursed Equipment | 8099a0f62a1b3137d86c52570515184e76077f3da1d10bc01acc62c3cd13beca | 936fb51decc2b9df69b6685f5e7a25f26775e26867fcf4d50f6c76e945b53d39
+
+Loaded gameplay DLLs in every run
+LOADED gkj.cursedrelics 0.2.2 7bd2af240862282a7b26a1d9f35cecdfe02a1032ac9010c4b96394daa3041731 assembly=0.2.2.0
+LOADED gkj.holdtheline 0.2.3 5b9cf019469d1cad4ecb8d2494fd61ada5e99676105a161afeb181e78feaf8fb assembly=0.2.3.0
+LOADED gkj.nightsofterror 0.1.3 2d36428c6bd4fa5647d3892adc98d8006ccd15f2b7d9bf0069ec70f9c70dcaeb assembly=0.1.3.0
+LOADED gkj.sfk.amayawithoutcooldown 0.1.2 f486026e0a5b42df0e7476ddc577f5ea936224492018b62c926c7e46a25c6f76 assembly=0.1.2.0
+LOADED gkj.sfk.caravancommissions 0.1.3 d18b191c336e20d4f8ce8dfc195653f809fe3e6855486755e7ff1edc03cf90cd assembly=0.1.3.0
+LOADED gkj.sfk.cursedequipment 0.2.1 936fb51decc2b9df69b6685f5e7a25f26775e26867fcf4d50f6c76e945b53d39 assembly=0.2.1.0
+LOADED gkj.sfk.kingdomcharters 0.1.2 20799693733ff62dbc0bb75a1f9a1b300f971b27d1d76d38a4dd75edfae751b6 assembly=0.1.2.0
+LOADED gkj.sfk.workerpresets 0.1.3 39f3d807f85964fbfc59013c8d696a75f16fc5cdb5605fc6b7c75d10a2759814 assembly=0.1.3.0
+LOADED gkj.superfantasykingdom.weeklyhermit 0.1.2 db605d1e05d9fc9421a82ec6573750c6355e90ce361ed3fabb0e61e789dce58a assembly=0.1.2.0
+LOADED sfk.dailycaravan 0.1.3 6994a5da291a0697476dc65867ba6c1b0b30b6be1248a6e46b9f15c1ce71470d assembly=0.1.3.0
+LOADED sfk.daybook 0.4.2 7be397095d19f396e9ec1d691c5868a8beb2f48edbe5eb5316f98a53e93cda50 assembly=0.4.2.0
+LOADED sfk.pinabuildcost 0.2.1 be8b512fc80a2d3869d7aa2cec745dcef0d41559f80cf2af7316037f008512a1 assembly=0.2.1.0
+LOADED sfk.productionbottlenecks 0.2.3 85000421d2a7a1f32b95c082b8ce277d0fb048f2e0fbd7571d724633fac1656b assembly=0.2.3.0
+LOADED sfk.relicloadoutjournal 0.1.2 2b60d8f5adf817a3a046fd10d671da3dbb1b46fdd589123e21e39631d6141756 assembly=0.1.2.0
+LOADED sfk.visitorcalendar 0.1.2 a6e130b005aee2260544370fe57bdf0892d9d3323439d39d81b4a6e54977ea83 assembly=0.1.2.0
+LOADED sfk.weeklycontracts 0.1.2 2c57bff98e78fe2de674d4c7b392a65428095e65cf4c4d7b8a04f5c13af96ca8 assembly=0.1.2.0
+
+[20261125-100526/combined-pad-large]
+Window verified foreground=True
+QA assertions: 101 passed, 1 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 ac2ba02215343996d97c0f320968d97c49f500b0672af4c5f7ded7cf0d05694c assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS active input scheme Gamepad and UI scale 1.5
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER GKJ_CE_EmberwakeBlade, Tome, Knife
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back closed the unaltered Blacksmith
+PASS mixed cursed card retained the native rarity sprite
+PASS Sword renders its expected frame and icon backdrop
+PASS GKJ_CE_BitterChalice renders its expected frame and icon backdrop
+PASS Bow renders its expected frame and icon backdrop
+PASS cursed native hover uses the crimson highlight
+PASS cursed native selected state uses the gold highlight
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS D-pad focused the cursed offer in the mixed row
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS native Back closed the mixed row
+PASS copied kingdom running at normal speed
+PASS ten distinct items with unique native sprites
+PASS active scale 1.5
+PASS copied kingdom has its native Forge
+PASS native cards shown for roster page 1
+PASS Cracked Spellglass fits its custom frame
+PASS Cracked Spellglass renders the curse red while Gift keeps native color
+PASS Bitter Chalice fits its custom frame
+PASS Bitter Chalice renders the curse red while Gift keeps native color
+PASS Cracked Duelist's Mirror fits its custom frame
+PASS Cracked Duelist's Mirror renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Cracked Spellglass
+PASS D-pad reached the native Buy button for Bitter Chalice
+PASS D-pad reached the native Buy button for Cracked Duelist's Mirror
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 1
+PASS native cards shown for roster page 2
+PASS Duelist's Fang fits its custom frame
+PASS Duelist's Fang renders the curse red while Gift keeps native color
+PASS Martyr's Plate fits its custom frame
+PASS Martyr's Plate renders the curse red while Gift keeps native color
+PASS Gravedigger's Lantern fits its custom frame
+PASS Gravedigger's Lantern renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Duelist's Fang
+PASS D-pad reached the native Buy button for Martyr's Plate
+PASS D-pad reached the native Buy button for Gravedigger's Lantern
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 2
+PASS native cards shown for roster page 3
+PASS Hangman's Quarrel fits its custom frame
+PASS Hangman's Quarrel renders the curse red while Gift keeps native color
+PASS Emberwake Blade fits its custom frame
+PASS Emberwake Blade renders the curse red while Gift keeps native color
+PASS Leadheart Locket fits its custom frame
+PASS Leadheart Locket renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Hangman's Quarrel
+PASS D-pad reached the native Buy button for Emberwake Blade
+PASS D-pad reached the native Buy button for Leadheart Locket
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 3
+PASS native cards shown for roster page 4
+PASS The Borrowed Halo fits its custom frame
+PASS The Borrowed Halo renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for The Borrowed Halo
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 4
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS D-pad focused paid Chalice
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS fixture granted Vulture's Covenant before the copied checkpoint
+PASS Glass Crown changed the wearer's actual max Health from 17.34 to 13.01
+PASS Chalice delayed a Red Mercy heal
+PASS Chalice and Red Mercy delivered 3.9 HP, observed 3.9
+PASS Locket capped amplified healing at 75% of Glass Crown maximum (9.7575), observed 9.7575
+PASS ending the controlled dusk restored the native maximum
+PASS native save wrote the purchased Chalice
+PASS copied kingdom running at normal speed
+PASS recipient death canceled the queue without revival
+WAVE clock=13.2355 phase=Morning ordinary=0 midnight=0 speed=1
+NATIVE ordinary spawn Shroom clock=13.26345
+PASS ordinary outside base radius
+PASS ordinary Covenant active
+PASS ordinary Spellglass and Mirror opener, HP 186.4
+PASS ordinary follow-up after Mirror re-equip, HP 181.3
+WAVE clock=13.30394 phase=Day ordinary=8 midnight=0 speed=1
+WAVE clock=13.39198 phase=Day ordinary=26 midnight=0 speed=1
+WAVE clock=13.47985 phase=Day ordinary=43 midnight=0 speed=1
+WAVE clock=13.56801 phase=Day ordinary=60 midnight=0 speed=1
+WAVE clock=13.65616 phase=Day ordinary=78 midnight=0 speed=1
+WAVE clock=13.74418 phase=Day ordinary=95 midnight=0 speed=1
+WAVE clock=13.83227 phase=Sunset ordinary=112 midnight=0 speed=1
+FAIL natural wave and scheduled midnight group advanced after controlled hit probes, 0/0 reinforcements
+
+[20261125-100526/combined-reload]
+Window verified foreground=True
+QA assertions: 10 passed, 0 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 ac2ba02215343996d97c0f320968d97c49f500b0672af4c5f7ded7cf0d05694c assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS Continue restored one purchased Chalice on the recipient, former wearer has none
+PASS copied kingdom running at normal speed
+PASS Continued wearer delayed healing
+PASS Continued wearer held healing before its deadline
+PASS Continued wearer got exactly one +50% heal
+PASS Continue also restored Vulture's Covenant
+FINISHED
+
+[20261125-100526/combined-pad]
+Window verified foreground=True
+QA assertions: 96 passed, 0 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 ac2ba02215343996d97c0f320968d97c49f500b0672af4c5f7ded7cf0d05694c assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS active input scheme Gamepad and UI scale 1
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER GKJ_CE_EmberwakeBlade, Tome, Knife
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back closed the unaltered Blacksmith
+PASS mixed cursed card retained the native rarity sprite
+PASS Sword renders its expected frame and icon backdrop
+PASS GKJ_CE_BitterChalice renders its expected frame and icon backdrop
+PASS Bow renders its expected frame and icon backdrop
+PASS cursed native hover uses the crimson highlight
+PASS cursed native selected state uses the gold highlight
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS D-pad focused the cursed offer in the mixed row
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS native Back closed the mixed row
+PASS copied kingdom running at normal speed
+PASS ten distinct items with unique native sprites
+PASS active scale 1
+PASS copied kingdom has its native Forge
+PASS native cards shown for roster page 1
+PASS Cracked Spellglass fits its custom frame
+PASS Cracked Spellglass renders the curse red while Gift keeps native color
+PASS Bitter Chalice fits its custom frame
+PASS Bitter Chalice renders the curse red while Gift keeps native color
+PASS Cracked Duelist's Mirror fits its custom frame
+PASS Cracked Duelist's Mirror renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Cracked Spellglass
+PASS D-pad reached the native Buy button for Bitter Chalice
+PASS D-pad reached the native Buy button for Cracked Duelist's Mirror
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 1
+PASS native cards shown for roster page 2
+PASS Duelist's Fang fits its custom frame
+PASS Duelist's Fang renders the curse red while Gift keeps native color
+PASS Martyr's Plate fits its custom frame
+PASS Martyr's Plate renders the curse red while Gift keeps native color
+PASS Gravedigger's Lantern fits its custom frame
+PASS Gravedigger's Lantern renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Duelist's Fang
+PASS D-pad reached the native Buy button for Martyr's Plate
+PASS D-pad reached the native Buy button for Gravedigger's Lantern
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 2
+PASS native cards shown for roster page 3
+PASS Hangman's Quarrel fits its custom frame
+PASS Hangman's Quarrel renders the curse red while Gift keeps native color
+PASS Emberwake Blade fits its custom frame
+PASS Emberwake Blade renders the curse red while Gift keeps native color
+PASS Leadheart Locket fits its custom frame
+PASS Leadheart Locket renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for Hangman's Quarrel
+PASS D-pad reached the native Buy button for Emberwake Blade
+PASS D-pad reached the native Buy button for Leadheart Locket
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 3
+PASS native cards shown for roster page 4
+PASS The Borrowed Halo fits its custom frame
+PASS The Borrowed Halo renders the curse red while Gift keeps native color
+PASS D-pad reached the native Buy button for The Borrowed Halo
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS D-pad Back closed roster page 4
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS D-pad focused native Blacksmith Back control
+INPUT South on native Back, merchant active=False overlay open=False
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS D-pad focused paid Chalice
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS fixture granted Vulture's Covenant before the copied checkpoint
+PASS Glass Crown changed the wearer's actual max Health from 17.34 to 13.01
+PASS Chalice delayed a Red Mercy heal
+PASS Chalice and Red Mercy delivered 3.9 HP, observed 3.9
+PASS Locket capped amplified healing at 75% of Glass Crown maximum (9.7575), observed 9.7575
+PASS ending the controlled dusk restored the native maximum
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+
+[20261125-100526/combined-mouse]
+Window verified foreground=True
+QA assertions: 46 passed, 0 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 ac2ba02215343996d97c0f320968d97c49f500b0672af4c5f7ded7cf0d05694c assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS active input scheme KeyboardMouse and UI scale 1
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER GKJ_CE_EmberwakeBlade, Tome, Knife
+PASS Back closed the unaltered Blacksmith
+PASS mixed cursed card retained the native rarity sprite
+PASS Sword renders its expected frame and icon backdrop
+PASS GKJ_CE_BitterChalice renders its expected frame and icon backdrop
+PASS Bow renders its expected frame and icon backdrop
+PASS cursed native hover uses the crimson highlight
+PASS cursed native selected state uses the gold highlight
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS native Back closed the mixed row
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS copied kingdom running at normal speed
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS fixture granted Vulture's Covenant before the copied checkpoint
+PASS Glass Crown changed the wearer's actual max Health from 17.34 to 13.01
+PASS Chalice delayed a Red Mercy heal
+PASS Chalice and Red Mercy delivered 3.9 HP, observed 3.9
+PASS Locket capped amplified healing at 75% of Glass Crown maximum (9.7575), observed 9.7575
+PASS ending the controlled dusk restored the native maximum
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+
+[20261125-100526/combined-mouse-large]
+Window verified foreground=True
+QA assertions: 46 passed, 0 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 ac2ba02215343996d97c0f320968d97c49f500b0672af4c5f7ded7cf0d05694c assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS active input scheme KeyboardMouse and UI scale 1.5
+PASS copied kingdom has live Blacksmith
+PASS Blacksmith stock pool includes all cursed equipment
+UNALTERED FORGE OFFER GKJ_CE_EmberwakeBlade, Tome, Knife
+PASS Back closed the unaltered Blacksmith
+PASS mixed cursed card retained the native rarity sprite
+PASS Sword renders its expected frame and icon backdrop
+PASS GKJ_CE_BitterChalice renders its expected frame and icon backdrop
+PASS Bow renders its expected frame and icon backdrop
+PASS cursed native hover uses the crimson highlight
+PASS cursed native selected state uses the gold highlight
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS mixed native price and currency icon are readable
+PASS native Back closed the mixed row
+PASS controlled Blacksmith issued the three native offers
+PASS Bitter Chalice and both terms fit
+PASS Cracked Duelist's Mirror and both terms fit
+PASS Cracked Spellglass and both terms fit
+PASS Back canceled the cursed offer without charging
+PASS native Chalice Buy control available after reopening
+PASS paid native Blacksmith produced one Chalice and charged exactly 2 Beer
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS copied kingdom running at normal speed
+PASS First wearer delayed healing
+PASS copied kingdom running at normal speed
+PASS First wearer held healing before its deadline
+PASS First wearer got exactly one +50% heal
+PASS native gear restrictions allowed Magnet
+PASS native gear restrictions allowed GKJ_CE_BitterChalice
+PASS Magnet transfer canceled the old queue and equipped one Chalice on the recipient
+PASS former wearer regained immediate base healing
+PASS New wearer delayed healing
+PASS New wearer held healing before its deadline
+PASS New wearer got exactly one +50% heal
+PASS fixture granted Vulture's Covenant before the copied checkpoint
+PASS Glass Crown changed the wearer's actual max Health from 17.34 to 13.01
+PASS Chalice delayed a Red Mercy heal
+PASS Chalice and Red Mercy delivered 3.9 HP, observed 3.9
+PASS Locket capped amplified healing at 75% of Glass Crown maximum (9.7575), observed 9.7575
+PASS ending the controlled dusk restored the native maximum
+PASS native save wrote the purchased Chalice
+PASS recipient death canceled the queue without revival
+FINISHED
+
+[20261125-101117/combined-wave-large]
+Window verified foreground=True
+QA assertions: 14 passed, 0 failed
+Error / exception log scan: player.log=0, loader.log=0
+LOADED gkj.local.cursedequipment.qa 0.1.0 04659bd2cdc5aeb266b62ae1b41282d78cf3b54bd74cd53d4e30fa21b8919741 assembly=1.0.0.0
+PASS installed game 0.8.068
+PASS all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3
+PASS Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods
+PASS registered each item and Forge flag once
+PASS copied kingdom running at normal speed
+CONTROLLED Added 750 wall durability through the native wall API for the midnight retry
+WAVE clock=13 phase=Loading ordinary=0 midnight=0 speed=1
+WAVE clock=13.08801 phase=Morning ordinary=0 midnight=0 speed=1
+WAVE clock=13.17587 phase=Morning ordinary=0 midnight=0 speed=1
+WAVE clock=13.26316 phase=Day ordinary=0 midnight=0 speed=0
+NATIVE ordinary spawn Shroom clock=13.26345
+PASS ordinary outside base radius
+PASS ordinary Covenant active
+PASS ordinary Spellglass and Mirror opener, HP 186.4
+PASS ordinary follow-up after Mirror re-equip, HP 181.3
+WAVE clock=13.332 phase=Day ordinary=14 midnight=0 speed=1
+WAVE clock=13.42004 phase=Day ordinary=31 midnight=0 speed=1
+WAVE clock=13.5079 phase=Day ordinary=49 midnight=0 speed=1
+WAVE clock=13.59573 phase=Day ordinary=66 midnight=0 speed=1
+WAVE clock=13.68363 phase=Day ordinary=83 midnight=0 speed=1
+WAVE clock=13.77165 phase=Day ordinary=100 midnight=0 speed=1
+WAVE clock=13.85952 phase=Sunset ordinary=118 midnight=0 speed=1
+WAVE clock=13.94737 phase=Evening ordinary=119 midnight=1 speed=1
+NATIVE midnight spawn Satyr clock=13.94737 ordinary still alive=102
+PASS midnight reinforcement outside base radius
+PASS midnight reinforcement Covenant active
+PASS midnight reinforcement Spellglass and Mirror opener, HP 186.4
+PASS midnight reinforcement follow-up after Mirror re-equip, HP 181.3
+CONTROLLED Survival retry restored hero health 9 times
+PASS natural wave and scheduled midnight group advanced after controlled hit probes, 60/60 reinforcements
+FINISHED
+
+[Managed checks on extracted Equipment DLL]
+PASS Mirror transforms installed positive HP damage branch
+PASS ProjectileActionFindTargets.Trigger transforms installed IL
+PASS ProjectileSActionFindTargets.Trigger transforms installed IL
+PASS CombatEffectDamage.Trigger transforms installed IL
+PASS CombatEffectRealDamage.Trigger transforms installed IL
+PASS other packs retain native labels
+PASS GKJ_CE_CrackedSpellglass puts Gift and a red Curse on the same native card
+PASS GKJ_CE_BitterChalice puts Gift and a red Curse on the same native card
+PASS GKJ_CE_CrackedDuelistsMirror puts Gift and a red Curse on the same native card
+PASS GKJ_CE_DuelistsFang puts Gift and a red Curse on the same native card
+PASS GKJ_CE_MartyrsPlate puts Gift and a red Curse on the same native card
+PASS GKJ_CE_GravediggersLantern puts Gift and a red Curse on the same native card
+PASS GKJ_CE_HangmansQuarrel puts Gift and a red Curse on the same native card
+PASS GKJ_CE_EmberwakeBlade puts Gift and a red Curse on the same native card
+PASS GKJ_CE_LeadheartLocket puts Gift and a red Curse on the same native card
+PASS GKJ_CE_BorrowedHalo puts Gift and a red Curse on the same native card
+PASS glass sprite embedded
+PASS chalice sprite embedded
+PASS mirror sprite embedded
+PASS fang sprite embedded
+PASS plate sprite embedded
+PASS lantern sprite embedded
+PASS quarrel sprite embedded
+PASS emberwake sprite embedded
+PASS locket sprite embedded
+PASS halo sprite embedded
+PASS equipment frame state embedded
+PASS equipment-hover frame state embedded
+PASS equipment-selected frame state embedded
+PASS circle wraps only damage and preserves shared effect definitions
+PASS radius increases once with duplicate Spellglass
+PASS damage is reduced once per target and composes with both Mirror multipliers
+PASS direct use of the same effect retains full damage
+PASS non-damaging override prevents radius boost
+PASS real-damage circle qualifies
+PASS unequipped wearer has base radius
+PASS new mod-added wearer qualifies
+PASS zero damage preserves opener and duplicate mirrors double only once
+PASS second hit is discounted
+PASS moving Mirror separates wearer histories
+PASS returning the Mirror cannot reset first hit
+PASS fresh monster life gets a new opener
+PASS ordinary source damage
+PASS pre-equipment hit is remembered
+PASS promotion retains native wearer identity
+PASS heal waits three scaled seconds
+PASS one amplified delivery, attribution retained, duplicate cup did not stack
+PASS transfer and same-frame re-equip cancel the pending heal
+PASS death invalidates pending heal even if revived before delivery
+PASS dead recipient cannot receive or queue delayed overheal
+PASS each heal keeps its own deadline and type
+PASS Continue clears pending combat heals
+PASS Shield passes through
+PASS OverShield passes through
+PASS Rage passes through
+PASS Fang scales repeat hits
+PASS Fang caps at 50% and penalizes a target switch
+PASS Lantern grants the isolated bonus
+PASS Lantern penalizes a recent shared target
+PASS Lantern drops expired ally pressure
+PASS Quarrel penalizes the exact 20% boundary
+PASS Quarrel rewards lower health
+PASS Locket caps overheal at 75% after Plate
+PASS Plate and low-health Locket compose on wearer health loss
+PASS Plate halves an ordinary health heal
+PASS Locket blocks health gain above its cap
+PASS Halo leaves one HP on its first lethal hit
+PASS Halo blocks damage and reduces output after saving
+PASS Halo expires and cannot save twice the same battle
+PASS Halo curse expires and next battle can trigger
+PASS copied checkpoint inventory round-trips ordinary and cursed IDs through Entity.SetItems
+71 checks passed.

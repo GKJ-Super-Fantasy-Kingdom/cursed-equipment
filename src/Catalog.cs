@@ -56,7 +56,7 @@ namespace CursedEquipment
                 var item = prefab.AddComponent<Item>();
                 var fields = Traverse.Create(item);
                 fields.Field("identifier").SetValue(card.Key);
-                fields.Field("icon").SetValue(LoadIcon(card.Value.art));
+                fields.Field("icon").SetValue(LoadSprite("items",card.Value.art));
                 fields.Field("soldAtBlacksmith").SetValue(true);
                 fields.Field("rarity").SetValue(Rarity.Rare);
                 fields.Field("kingdom").SetValue(Races.None);
@@ -69,16 +69,16 @@ namespace CursedEquipment
             }
         }
 
-        private static Sprite LoadIcon(string name)
+        internal static Sprite LoadSprite(string group,string name)
         {
-            using (var input = typeof(Plugin).Assembly.GetManifestResourceStream("items." + name + ".png"))
+            using (var input = typeof(Plugin).Assembly.GetManifestResourceStream(group+"."+name+".png"))
             using (var bytes = new MemoryStream())
             {
                 input.CopyTo(bytes);
-                var texture = new Texture2D(2, 2) { filterMode = FilterMode.Point };
+                var texture = new Texture2D(2,2) { filterMode=FilterMode.Point, wrapMode=TextureWrapMode.Clamp };
                 if (!texture.LoadImage(bytes.ToArray())) throw new InvalidDataException(name);
                 var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
-                    new Vector2(.5f, .5f), 32);
+                    new Vector2(.5f, .5f),32,0,SpriteMeshType.FullRect);
                 sprite.name = name;
                 return sprite;
             }

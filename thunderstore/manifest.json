@@ -1,6 +1,6 @@
 {
   "name": "CursedEquipment",
-  "version_number": "0.2.0",
+  "version_number": "0.2.1",
   "website_url": "",
   "description": "Ten pieces of native equipment with unique Gifts and Curses for their wearers.",
   "dependencies": [

@@ -1,19 +1,22 @@
 param(
     [string[]]$Phases = @('combined-pad-large','combined-reload','combined-pad','combined-mouse','combined-mouse-large'),
-    [string]$ReloadFrom
+    [string]$ReloadFrom,
+    [switch]$Expansion
 )
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path "$PSScriptRoot/../..").Path
-$player = (Resolve-Path "$root/.analysis/combined-player").Path
+$playerFolder = if ($Expansion) { 'expansion-player' } else { 'combined-player' }
+$product = if ($Expansion) { 'Cursed Cards QA 00001' } else { 'Cursed Combo QA 00001' }
+$player = (Resolve-Path "$root/.analysis/$playerFolder").Path
 $data = "$player/Super Fantasy Kingdom_Data"
 $identity = Get-Content "$data/app.info"
-if ($identity[0] -cne 'GKJ QA Isolated Lab' -or $identity[1] -cne 'Cursed Combo QA 00001' -or
+if ($identity[0] -cne 'GKJ QA Isolated Lab' -or $identity[1] -cne $product -or
     ![Text.Encoding]::ASCII.GetString([IO.File]::ReadAllBytes("$data/globalgamemanagers")).Contains($identity[1])) {
     throw 'Expected private combined player and save identity'
 }
 $logRoot = Join-Path $root ('.analysis/combined-evidence/' + (Get-Date -Format yyyyMMdd-HHmmss))
 New-Item -ItemType Directory -Path $logRoot -Force | Out-Null
-$save = Join-Path $env:USERPROFILE 'AppData/LocalLow/GKJ QA Isolated Lab/Cursed Combo QA 00001'
+$save = Join-Path $env:USERPROFILE "AppData/LocalLow/GKJ QA Isolated Lab/$product"
 New-Item -ItemType Directory -Force -Path $save | Out-Null
 if ((Get-Item -LiteralPath $save).Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Unexpected save directory' }
 $mutex = [Threading.Mutex]::new($false,'Local\SFKControllerRetest')
@@ -65,6 +68,7 @@ try {
     Set-Content -LiteralPath $config -Value $settings -NoNewline
     Get-ChildItem "$player/BepInEx/plugins" -Recurse -Filter '*.dll' | Get-FileHash |
         Format-List | Out-File "$logRoot/staged.txt"
+    $lastCaptured = $null
     foreach ($phase in $Phases) {
         $out = Join-Path $logRoot $phase
         New-Item -ItemType Directory -Path $out | Out-Null
@@ -72,8 +76,9 @@ try {
             $before = New-Item -ItemType Directory -Path "$out/previous"
             Get-ChildItem -LiteralPath $save -Filter '*.data*' | Copy-Item -Destination $before.FullName
             Copy-Item "$root/../hold-the-line/.analysis/combined-qa/seed/*.data*" -Destination $save -Force
-        } elseif ($ReloadFrom) {
-            $checkpoint = (Resolve-Path -LiteralPath $ReloadFrom).Path
+        } elseif ($ReloadFrom -or $lastCaptured) {
+            $inputCheckpoint = if ($ReloadFrom) { $ReloadFrom } else { $lastCaptured }
+            $checkpoint = (Resolve-Path -LiteralPath $inputCheckpoint).Path
             $privateEvidence = (Resolve-Path "$root/.analysis/combined-evidence").Path + [IO.Path]::DirectorySeparatorChar
             if (!$checkpoint.StartsWith($privateEvidence,[StringComparison]::OrdinalIgnoreCase) -or
                 (Split-Path $checkpoint -Leaf) -ne '1_human_game.data') { throw 'Expected preserved private human checkpoint' }
@@ -88,6 +93,7 @@ try {
         $env:SFK_EQUIP_EVIDENCE = $out
         $env:SFK_EQUIP_PHASE = $phase
         $env:SFK_EQUIP_VISIBLE = '1'
+        $env:SFK_EQUIP_EXPANSION = if ($Expansion) { '1' } else { '0' }
         $p = Start-Process -FilePath "$player/Super Fantasy Kingdom.exe" -WorkingDirectory $player -WindowStyle Normal -PassThru -ArgumentList "-force-d3d11 -nosound -screen-fullscreen 0 -screen-width 1920 -screen-height 1080 -logFile `"$out/player.log`""
         try {
             $until = (Get-Date).AddSeconds(30)
@@ -110,7 +116,7 @@ try {
             } else { "Private window could not be confirmed for $phase" | Tee-Object "$out/window.txt" }
             if (!$visible -or !$front) { throw 'Private Unity window could not be brought to the foreground' }
             New-Item -ItemType File -Path "$out/foreground-ready" | Out-Null
-            if (!$p.WaitForExit(220000)) { Write-Warning "$phase timed out" }
+            if (!$p.WaitForExit(300000)) { Write-Warning "$phase timed out" }
         } finally {
             if (!$p.HasExited) { $p.Kill(); $p.WaitForExit() }
         }
@@ -120,6 +126,9 @@ try {
             $failed = $true
         }
         if (Test-Path "$out/$phase.txt") { Get-Content "$out/$phase.txt" | Select-Object -Last 18 }
+        if (Test-Path -LiteralPath "$out/checkpoint/1_human_game.data") {
+            $lastCaptured = "$out/checkpoint/1_human_game.data"
+        }
     }
     if ($failed) { throw "A combined phase failed. See $logRoot" }
 } finally {

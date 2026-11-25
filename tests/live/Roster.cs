@@ -8,6 +8,10 @@ using SuperFantasyKingdom.Clickable;
 using SuperFantasyKingdom.Status;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 public sealed partial class Probe
 {
@@ -17,7 +21,7 @@ public sealed partial class Probe
         "GKJ_CE_EmberwakeBlade", "GKJ_CE_LeadheartLocket", "GKJ_CE_BorrowedHalo"
     };
 
-    private IEnumerator Roster(AddressablesManager catalog, UnitBase hero, float scale)
+    private IEnumerator Roster(AddressablesManager catalog, UnitBase hero, float scale, Gamepad pad=null)
     {
         yield return ResumeClock();
         var roster = ids.Concat(expansionIds).ToArray();
@@ -37,7 +41,7 @@ public sealed partial class Probe
             var picks = all.Skip(start).Take(3).ToArray();
             var shop = OverlayManager.Instance.GetMerchantScreen();
             shop.Init("Blacksmith");
-            shop.SetActor(DialogueManager.Instance.GetActor(Actors.Blacksmith));
+            if (pad==null) shop.SetActor(DialogueManager.Instance.GetActor(Actors.Blacksmith));
             shop.SetText(introduction);
             shop.SetUseCardSelectCallback(true);
             int index=0;
@@ -55,20 +59,36 @@ public sealed partial class Probe
                 var frame=fields.Field("card").GetValue<UnityEngine.UI.Image>();
                 title.ForceMeshUpdate();
                 desc.ForceMeshUpdate();
-                Check(!title.isTextOverflowing && !desc.isTextOverflowing && frame.sprite,
-                    title.text+" fits inside its native frame");
+                Check(!title.isTextOverflowing && !desc.isTextOverflowing && frame.sprite &&
+                    frame.sprite.name.StartsWith("equipment"),title.text+" fits its custom frame");
                 var visible=desc.textInfo.characterInfo.Take(desc.textInfo.characterCount).Where(c=>c.isVisible).ToArray();
                 bool red(Color32 c) => c.r==153 && c.g==31 && c.b==41;
                 Check(visible.Length>0 && !red(visible[0].color) && red(visible.Last().color)
                       && desc.text.Contains("<color=#991F29>Curse:"),
                     title.text+" renders the curse red while Gift keeps native color");
             }
+            if (pad!=null)
+            {
+                var buttons=shop.transform.Find("Panel/BuyButtons").GetComponentsInChildren<Button>();
+                foreach(var buy in buttons)
+                {
+                    for (int move=0;move<6 && EventSystem.current.currentSelectedGameObject!=buy.gameObject;move++)
+                        yield return Press(pad,DirectionTo(buy,GamepadButton.DpadUp));
+                    Check(EventSystem.current.currentSelectedGameObject==buy.gameObject,
+                        "D-pad reached the native Buy button for "+picks[Array.IndexOf(buttons,buy)].GetTitle());
+                }
+            }
             CaptureScene("roster-"+(start/3+1));
             yield return new WaitForSecondsRealtime(.35f);
-            OverlayManager.Instance.CloseOverlay();
+            if(pad!=null)
+            {
+                yield return Back(shop,pad,null,null);
+                Check(!shop.gameObject.activeInHierarchy,"D-pad Back closed roster page "+(start/3+1));
+            }
+            if(OverlayManager.Instance.IsOpen()) OverlayManager.Instance.CloseOverlay();
             yield return null;
         }
-        NativeExpansion(hero,catalog);
+        if(pad==null) NativeExpansion(hero,catalog);
     }
 
     private void NativeExpansion(UnitBase hero,AddressablesManager catalog)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Added a distinctive plum-and-crimson Equipment frame to the ten cursed cards, with separate hover and selected states.
+
 ## 0.2.0
 
 - Added seven pieces of equipment, bringing the Blacksmith roster to ten distinct cursed items.

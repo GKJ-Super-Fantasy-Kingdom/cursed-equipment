@@ -27,7 +27,7 @@ public sealed partial class Probe : BaseUnityPlugin
     {
         evidence = Environment.GetEnvironmentVariable("SFK_EQUIP_EVIDENCE");
         if (string.IsNullOrEmpty(evidence) || (Application.productName != "Cursed Equip QA 00001"
-            && Application.productName != "Cursed Combo QA 00001")
+            && Application.productName != "Cursed Combo QA 00001" && Application.productName != "Cursed Cards QA 00001")
             || Application.companyName != "GKJ QA Isolated Lab") return;
         phase = Environment.GetEnvironmentVariable("SFK_EQUIP_PHASE");
         var h = new Harmony("gkj.local.cursedequipment.qa");

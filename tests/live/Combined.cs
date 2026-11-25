@@ -21,6 +21,8 @@ public sealed partial class Probe
 {
     private static readonly string[] combinedPackages =
         { "gkj.holdtheline", "gkj.nightsofterror", "gkj.cursedrelics", "gkj.sfk.cursedequipment" };
+    private bool ExpansionPair => Environment.GetEnvironmentVariable("SFK_EQUIP_EXPANSION") == "1";
+    private const string Covenant = "gkj_CR_VulturesCovenant";
 
     private void CheckCombinedPackages()
     {
@@ -37,6 +39,11 @@ public sealed partial class Probe
             && Chainloader.PluginInfos[combinedPackages[0]].Metadata.Version.ToString() == "0.2.3"
             && Chainloader.PluginInfos[combinedPackages[1]].Metadata.Version.ToString() == "0.1.3",
             "all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3");
+        if (ExpansionPair)
+            Check(Chainloader.PluginInfos[combinedPackages[2]].Metadata.Version.ToString()=="0.2.2"
+                && Chainloader.PluginInfos[combinedPackages[3]].Metadata.Version.ToString()=="0.2.1"
+                && Chainloader.PluginInfos.Values.Count(p=>p.Metadata.GUID!="gkj.local.cursedequipment.qa" && p.Instance)==16,
+                "Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods");
     }
 
     private IEnumerator Combined(AddressablesManager catalog, UnitBase hero, float scale)
@@ -48,6 +55,15 @@ public sealed partial class Probe
             else overlay.CloseOverlay();
             yield return new WaitForSecondsRealtime(.15f);
         }
+        if (phase == "combined-wave-large")
+        {
+            var manager=RelicManager.Instance;
+            foreach (var id in new[]{Covenant,"gkj_CR_GlassCrown","gkj_CR_RedMercy"})
+                if (!manager.HasRelic(id)) manager.AddRelic(id);
+            yield return ResumeClock();
+            yield return NativeWaves(hero,true);
+            yield break;
+        }
         var recipient = UnitManager.Instance.GetAllUnits().First(u => u && u != hero && !u.IsDead()
             && u.GetHealth().GetMaxHealth()>0 && u.GetItems().Count<3);
         if (phase == "combined-reload")
@@ -56,6 +72,8 @@ public sealed partial class Probe
                 "Continue restored one purchased Chalice on the recipient, former wearer has none");
             yield return ResumeClock();
             yield return CheckChalice(recipient, "Continued wearer");
+            if (ExpansionPair)
+                Check(RelicManager.Instance.HasRelic(Covenant),"Continue also restored Vulture's Covenant");
             overlay.OpenUnitDetails(recipient,true);
             yield return new WaitForSecondsRealtime(.5f);
             CaptureScene("continued-loadout");
@@ -88,6 +106,8 @@ public sealed partial class Probe
         yield return Back(shop,pad,mouse,keyboard);
         Check(!shop.gameObject.activeInHierarchy, "Back closed the unaltered Blacksmith");
         if (overlay.IsOpen()) overlay.CloseOverlay();
+        if (ExpansionPair) yield return MixedRow(catalog,forge,pad,mouse,keyboard);
+        if (ExpansionPair && padMode) yield return Roster(catalog,hero,scale,pad);
 
         // Keep normal shop generation, purchase prices and callbacks. Pin the three
         // item IDs for equivalent layout and selection checks across all four runs.
@@ -160,8 +180,21 @@ public sealed partial class Probe
         Check(Mathf.Abs(old.ReceiveHeal(new Heal{healType=HealType.Health,healAmount=2})-2)<.05f,
             "former wearer regained immediate base healing");
         yield return CheckChalice(recipient,"New wearer");
+        if (ExpansionPair)
+        {
+            var manager=RelicManager.Instance;
+            if (!manager.HasRelic(Covenant)) manager.AddRelic(Covenant);
+            Check(manager.HasRelic(Covenant),"fixture granted Vulture's Covenant before the copied checkpoint");
+            yield return CheckRelicEquipmentOverlap(recipient);
+        }
         GameDataManager.Instance.Save();
-        Check(File.ReadAllText(Path.Combine(Application.persistentDataPath,"1_human_game.data")).Contains(ids[1]),"native save wrote the purchased Chalice");
+        var save=Path.Combine(Application.persistentDataPath,"1_human_game.data");
+        Check(File.ReadAllText(save).Contains(ids[1]),"native save wrote the purchased Chalice");
+        if (ExpansionPair)
+        {
+            var preserved=Directory.CreateDirectory(Path.Combine(evidence,"checkpoint")).FullName;
+            File.Copy(save,Path.Combine(preserved,Path.GetFileName(save)));
+        }
         if (demo)
         {
             overlay.OpenUnitDetails(recipient,true);
@@ -221,6 +254,66 @@ public sealed partial class Probe
 
     private static UICardItem[] Cards(UIOverlayMerchant shop) => shop.GetComponentsInChildren<UICardItem>();
     private static string CardId(UICardItem card) => Traverse.Create(card).Field("m_ItemIdentifier").GetValue<string>();
+
+    private IEnumerator MixedRow(AddressablesManager catalog, BuildingForge forge, Gamepad pad, Mouse mouse, Keyboard keyboard)
+    {
+        var overlay=OverlayManager.Instance;
+        var shop=overlay.GetMerchantScreen();
+        shop.Init("Blacksmith");
+        shop.SetActor(DialogueManager.Instance.GetActor(Actors.Blacksmith));
+        shop.SetText((string)AccessTools.Method(typeof(BuildingObjectShop),"GetDescription").Invoke(forge,null));
+        shop.SetUseCardSelectCallback(true);
+        var picks=new[]{"Sword",ids[1],"Bow"}.Select(catalog.GetItem).ToArray();
+        var price=(ResourceAmount[])AccessTools.Method(typeof(BuildingForge),"GetPrice").Invoke(forge,new object[]{picks[1]});
+        if (!ResourceManager.Instance.CanBeBuilt(price)) ResourceManager.Instance.AddResources(price);
+        int next=0;
+        shop.Items(()=>picks[next++%picks.Length], _=>price);
+        shop.SetCancel("Leave");
+        shop.Display();
+        yield return new WaitForSecondsRealtime(1.6f);
+        var cards=Cards(shop);
+        var cursed=cards.Single(card=>CardId(card)==ids[1]);
+        var cursedFields=Traverse.Create(cursed);
+        var nativeRarity=cursedFields.Field("rarity").GetValue<Image>();
+        Check(nativeRarity && nativeRarity.sprite,"mixed cursed card retained the native rarity sprite");
+        foreach (var card in cards)
+        {
+            var fields=Traverse.Create(card);
+            var frame=fields.Field("spriteCardDefault").GetValue<Sprite>();
+            var wood=fields.Field("card").GetValue<Image>().transform.Find("BG");
+            bool custom=ReferenceEquals(card,cursed);
+            Check((frame.name=="equipment")==custom && wood && wood.gameObject.activeSelf!=custom,
+                CardId(card)+" renders its expected frame and icon backdrop");
+        }
+        var image=cursedFields.Field("card").GetValue<Image>();
+        cursed.OnEnter();
+        Check(image.sprite.name=="equipment-hover","cursed native hover uses the crimson highlight");
+        cursed.OnSelect();
+        Check(image.sprite.name=="equipment-selected","cursed native selected state uses the gold highlight");
+        cursed.OnDeselect();
+        var buys=shop.transform.Find("Panel/BuyButtons").GetComponentsInChildren<Button>();
+        foreach(var button in buys)
+        {
+            var amount=button.transform.Find("Amount").GetComponent<TMP_Text>();
+            var currency=button.transform.Find("Icon").GetComponent<Image>();
+            amount.ForceMeshUpdate();
+            Check(button.IsInteractable() && amount.text.Trim()==price[0].amount.ToString()
+                && !amount.isTextOverflowing && currency.enabled && currency.sprite,
+                "mixed native price and currency icon are readable");
+        }
+        if (pad!=null)
+        {
+            var target=buys[Array.IndexOf(cards,cursed)];
+            for (int move=0;move<6 && EventSystem.current.currentSelectedGameObject!=target.gameObject;move++)
+                yield return Press(pad,DirectionTo(target,GamepadButton.DpadUp));
+            Check(EventSystem.current.currentSelectedGameObject==target.gameObject,"D-pad focused the cursed offer in the mixed row");
+        }
+        CaptureScene("mixed-frames");
+        yield return new WaitForSecondsRealtime(2f);
+        yield return Back(shop,pad,mouse,keyboard);
+        Check(!shop.gameObject.activeInHierarchy,"native Back closed the mixed row");
+        if (overlay.IsOpen()) overlay.CloseOverlay();
+    }
 
     private static GamepadButton DirectionTo(Selectable target,GamepadButton fallback)
     {
@@ -294,6 +387,43 @@ public sealed partial class Probe
         Check(Mathf.Approximately(Time.timeScale,1),"copied kingdom running at normal speed");
     }
 
+    private IEnumerator CheckRelicEquipmentOverlap(UnitBase wearer)
+    {
+        const string glass="gkj_CR_GlassCrown", mercy="gkj_CR_RedMercy";
+        var manager=RelicManager.Instance;
+        var night=Chainloader.PluginInfos[combinedPackages[2]].Instance.GetType().Assembly.GetType("CursedRelics.Night",true);
+        var end=AccessTools.Method(night,"End");
+        var health=wearer.GetHealth();
+        float originalMax=health.GetMaxHealth();
+        if (!manager.HasRelic(glass)) manager.AddRelic(glass);
+        if (!manager.HasRelic(mercy)) manager.AddRelic(mercy);
+        // Apply the exact dusk hook without advancing or fast-forwarding the live clock.
+        AccessTools.Method(night,"Dusk").Invoke(null,new object[]{DaytimeManager.Instance.CurrentDay()});
+        try
+        {
+            float max=health.GetMaxHealth();
+            Check(Mathf.Abs(max-originalMax*.75f)<.02f,$"Glass Crown changed the wearer's actual max Health from {originalMax} to {max}");
+            health.SetHitPoints(max*.35f);
+            float before=health.GetHitpoints();
+            Check(health.ReceiveHeal(new Heal{healType=HealType.Health,healAmount=2})==0,"Chalice delayed a Red Mercy heal");
+            yield return GameSeconds(3.2f);
+            Check(Mathf.Abs(health.GetHitpoints()-before-3.9f)<.02f,
+                $"Chalice and Red Mercy delivered 3.9 HP, observed {health.GetHitpoints()-before}");
+            wearer.GiveItem(expansionIds[5]);
+            try
+            {
+                health.SetHitPoints(max*.7f);
+                health.ReceiveHeal(new Heal{healType=HealType.OverHeal,healAmount=max*.4f});
+                yield return GameSeconds(3.2f);
+                Check(Mathf.Abs(health.GetHitpoints()-max*.75f)<.02f,
+                    $"Locket capped amplified healing at 75% of Glass Crown maximum ({max*.75f}), observed {health.GetHitpoints()}");
+            }
+            finally { wearer.RemoveItem(wearer.GetItems().IndexOf(expansionIds[5])); }
+        }
+        finally { end.Invoke(null,null); }
+        Check(Mathf.Abs(health.GetMaxHealth()-originalMax)<.02f,"ending the controlled dusk restored the native maximum");
+    }
+
     private IEnumerator GameSeconds(float duration)
     {
         float stop=Time.time+duration;
@@ -313,7 +443,7 @@ public sealed partial class Probe
             throw new InvalidOperationException($"Game clock stalled during {duration}s check. Scale={Time.timeScale}, overlay={OverlayManager.Instance.IsOpen()}, forced pause={GameManager.Instance.IsForcedPause()}.");
     }
 
-    private IEnumerator NativeWaves(UnitBase hero)
+    private IEnumerator NativeWaves(UnitBase hero,bool supportSurvival=false)
     {
         var ordinary=new List<MonsterBase>();
         var midnight=new List<MonsterBase>();
@@ -332,6 +462,13 @@ public sealed partial class Probe
             var clock=DaytimeManager.Instance;
             var nights=Chainloader.PluginInfos[combinedPackages[1]].Instance;
             if (CityManager.Instance.GetCastle()) GameCamera.Instance.SetPosition(CityManager.Instance.GetCastle().transform.position+Vector3.up);
+            var heroHealth=hero.GetHealth();
+            int assistedHeals=0;
+            if (supportSurvival)
+            {
+                WallManager.Instance.AddHitpoints(750f);
+                Write("CONTROLLED Added 750 wall durability through the native wall API for the midnight retry");
+            }
             game.ResumeGame(true); game.SetGameSpeed(1,false);
             float limit=Time.realtimeSinceStartup+145;
             bool testedOrdinary=false, testedMidnight=false;
@@ -353,6 +490,12 @@ public sealed partial class Probe
                 }
                 if (!game.IsForcedPause() && !OverlayManager.Instance.IsOpen() && Time.timeScale!=1)
                     game.SetGameSpeed(1,false);
+                if (supportSurvival && heroHealth.IsAlive() && heroHealth.GetHealthPercentageAbs()<.5f)
+                {
+                    heroHealth.SetHitPoints(heroHealth.GetMaxHealth());
+                    heroHealth.SetCurrentHealth();
+                    assistedHeals++;
+                }
                 var normal=ordinary.FirstOrDefault(m=>m && m.GetHealth().IsAlive());
                 if (!testedOrdinary && normal)
                 {
@@ -373,6 +516,8 @@ public sealed partial class Probe
                 }
                 yield return null;
             }
+            if (supportSurvival) Write("CONTROLLED Survival retry restored hero health " + assistedHeals + " times");
+            if (game.IsGameOver()) Write("NATIVE Game over before the wave probe finished. Hero alive=" + heroHealth.IsAlive());
             Check(testedOrdinary && testedMidnight && plannedCount>0 && midnight.Count==plannedCount,
                 $"natural wave and scheduled midnight group advanced after controlled hit probes, {midnight.Count}/{plannedCount} reinforcements");
             yield return new WaitForSecondsRealtime(10f);
@@ -409,10 +554,14 @@ public sealed partial class Probe
             Check(hp.GetHitpoints()==200,wave+" outside base radius");
             wearer.GiveItem(ids[0]);
             trigger.Invoke(circle,new object[]{projectile});
-            Check(Mathf.Abs(hp.GetHitpoints()-184)<.02f,wave+" took 16 opener HP, observed "+hp.GetHitpoints());
+            float multiplier=ExpansionPair ? .85f : 1f;
+            if (ExpansionPair) Check(RelicManager.Instance.HasRelic(Covenant),wave+" Covenant active");
+            Check(Mathf.Abs(hp.GetHitpoints()-(200-16*multiplier))<.02f,
+                wave+" Spellglass and Mirror opener, HP "+hp.GetHitpoints());
             wearer.RemoveItem(wearer.GetItems().IndexOf(ids[2])); wearer.GiveItem(ids[2]);
             trigger.Invoke(circle,new object[]{projectile});
-            Check(Mathf.Abs(hp.GetHitpoints()-178)<.02f,wave+" took 6 follow-up HP after re-equipping Mirror");
+            Check(Mathf.Abs(hp.GetHitpoints()-(200-22*multiplier))<.02f,
+                wave+" follow-up after Mirror re-equip, HP "+hp.GetHitpoints());
         }
         finally
         {

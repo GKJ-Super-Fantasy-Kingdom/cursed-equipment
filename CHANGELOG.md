@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4
+
+- Updated the Thunderstore logo with a brighter crimson seal and plum shading inside the copper frame.
+
 ## 0.2.3
 
 - Shared the Cursed Relics 0.2.8 artwork and native focus treatment for cursed cards. Added more clearance around Gift and Curse text and kept signed percentages together when a line wraps.

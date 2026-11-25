@@ -18,7 +18,7 @@ using UnityEngine.InputSystem.LowLevel;
 
 [BepInPlugin("gkj.local.cursedequipment.qa", "Cursed Equipment private playtest", "0.1.0")]
 [BepInDependency("gkj.sfk.cursedequipment")]
-public sealed class Probe : BaseUnityPlugin
+public sealed partial class Probe : BaseUnityPlugin
 {
     private string evidence, phase;
     private readonly string[] ids = { "GKJ_CE_CrackedSpellglass", "GKJ_CE_BitterChalice", "GKJ_CE_CrackedDuelistsMirror" };
@@ -26,7 +26,8 @@ public sealed class Probe : BaseUnityPlugin
     private void Awake()
     {
         evidence = Environment.GetEnvironmentVariable("SFK_EQUIP_EVIDENCE");
-        if (string.IsNullOrEmpty(evidence) || Application.productName != "Cursed Equip QA 00001"
+        if (string.IsNullOrEmpty(evidence) || (Application.productName != "Cursed Equip QA 00001"
+            && Application.productName != "Cursed Combo QA 00001")
             || Application.companyName != "GKJ QA Isolated Lab") return;
         phase = Environment.GetEnvironmentVariable("SFK_EQUIP_PHASE");
         var h = new Harmony("gkj.local.cursedequipment.qa");
@@ -44,13 +45,20 @@ public sealed class Probe : BaseUnityPlugin
     }
     private IEnumerator Run()
     {
-        var scenario = Scenario();
-        while (true)
+        var stack = new System.Collections.Generic.Stack<IEnumerator>();
+        stack.Push(Scenario());
+        while (stack.Count > 0)
         {
             object current;
-            try { if (!scenario.MoveNext()) break; current = scenario.Current; }
+            try
+            {
+                var step = stack.Peek();
+                if (!step.MoveNext()) { stack.Pop(); continue; }
+                current = step.Current;
+            }
             catch (Exception e) { Write(e.ToString()); Application.Quit(1); yield break; }
-            yield return current;
+            if (current is IEnumerator nested) stack.Push(nested);
+            else yield return current;
         }
         Write("FINISHED"); Application.Quit();
     }
@@ -61,7 +69,19 @@ public sealed class Probe : BaseUnityPlugin
         while (!FindObjectOfType<TitleScreenManager>() || !SettingsManager.Instance || !SaveManager.Instance) yield return null;
         yield return new WaitForSecondsRealtime(1);
         bool mouseMode = phase.StartsWith("mouse");
-        float scale = phase == "mouse" || phase == "pad-large" ? 1.5f : 1f;
+        float scale = phase == "mouse" || phase.EndsWith("-large") ? 1.5f : 1f;
+        if (phase.StartsWith("combined-"))
+        {
+            if (Environment.GetEnvironmentVariable("SFK_EQUIP_VISIBLE")=="1")
+                while (!File.Exists(Path.Combine(evidence,"foreground-ready"))) yield return null;
+            CheckCombinedPackages();
+            if (phase != "combined-reload" && PlayerPrefs.HasKey("PreventCheating3Human0"))
+            {
+                PlayerPrefs.DeleteKey("PreventCheating3Human0");
+                Write("Reset the retry marker for the newly copied private day-13 fixture");
+            }
+        }
+        if (Environment.GetEnvironmentVariable("SFK_EQUIP_VISIBLE")=="1") SettingsManager.Instance.SetFullscreen(2);
         SettingsManager.Instance.SetUIScaling(scale);
         SettingsManager.Instance.SetPause(0);
         MainManager.Instance.ContinueGame();
@@ -88,6 +108,11 @@ public sealed class Probe : BaseUnityPlugin
         Check(ids.All(id => catalog.GetItem(id) && catalog.GetItem(id).GetIcon() && catalog.GetItem(id).SoldAtBlacksmith()
             && catalog.GetAllItemIdentifiers().Count(x => x == id) == 1), "registered each item and Forge flag once");
         var unit = UnitManager.Instance.GetHero();
+        if (phase.StartsWith("combined-"))
+        {
+            yield return Combined(catalog, unit, scale);
+            yield break;
+        }
         if (phase == "content")
         {
             CompatibleContent(catalog);
@@ -244,6 +269,11 @@ public sealed class Probe : BaseUnityPlugin
 
     private void CaptureScene(string name)
     {
+        if (Environment.GetEnvironmentVariable("SFK_EQUIP_VISIBLE")=="1")
+        {
+            ScreenCapture.CaptureScreenshot(Path.Combine(evidence,name+".png"));
+            return;
+        }
         // A batch player has no swapchain. Render the actual scene cameras and
         // existing UI canvases into one texture without creating replacement UI.
         var cameras = Camera.allCameras.OrderBy(c => c.depth).ToArray();

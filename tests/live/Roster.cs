@@ -56,16 +56,17 @@ public sealed partial class Probe
                 var fields=Traverse.Create(card);
                 var title=fields.Field("title").GetValue<TMP_Text>();
                 var desc=fields.Field("description").GetValue<TMP_Text>();
-                var frame=fields.Field("card").GetValue<UnityEngine.UI.Image>();
+                var clip=EquipmentClip(CardSurface(card));
                 title.ForceMeshUpdate();
                 desc.ForceMeshUpdate();
-                Check(!title.isTextOverflowing && !desc.isTextOverflowing && frame.sprite &&
-                    frame.sprite.name.StartsWith("equipment"),title.text+" fits its custom frame");
+                Check(!title.isTextOverflowing && !desc.isTextOverflowing && clip && clip.gameObject.activeInHierarchy
+                    && EquipmentArt(clip).sprite.name=="shared-trim",title.text+" fits its shared frame");
                 var visible=desc.textInfo.characterInfo.Take(desc.textInfo.characterCount).Where(c=>c.isVisible).ToArray();
                 bool red(Color32 c) => c.r==153 && c.g==31 && c.b==41;
                 Check(visible.Length>0 && !red(visible[0].color) && red(visible.Last().color)
                       && desc.text.Contains("<color=#991F29>Curse:"),
                     title.text+" renders the curse red while Gift keeps native color");
+                CheckDescriptionClearance(CardSurface(card),desc,title.text,scale);
             }
             if (pad!=null)
             {
@@ -89,6 +90,29 @@ public sealed partial class Probe
             yield return null;
         }
         if(pad==null) NativeExpansion(hero,catalog);
+    }
+
+    private void CheckDescriptionClearance(UnityEngine.UI.Image surface, TMP_Text description, string title, float scale)
+    {
+        var face=surface.rectTransform;
+        var glyphs=description.textBounds;
+        var min=face.InverseTransformPoint(description.rectTransform.TransformPoint(glyphs.min));
+        var max=face.InverseTransformPoint(description.rectTransform.TransformPoint(glyphs.max));
+        var bounds=face.rect;
+        float sideInset=bounds.width*8f/72f;
+        float side=Mathf.Min(min.x-bounds.xMin-sideInset,bounds.xMax-sideInset-max.x);
+        float bottom=min.y-bounds.yMin-bounds.height*5f/96f;
+        Check(side>=7f && bottom>=3f, $"PADDING {scale:0.0}x {title} | side={side:0.0} bottom={bottom:0.0} card units");
+        var characters=description.textInfo.characterInfo;
+        for (int i=0; i+1<description.textInfo.characterCount; i++)
+        {
+            var sign=characters[i];
+            if ((sign.character!='+' && sign.character!='-') || !char.IsDigit(characters[i+1].character)) continue;
+            int end=i+1;
+            while (end<description.textInfo.characterCount && char.IsDigit(characters[end].character)) end++;
+            if (end<description.textInfo.characterCount && characters[end].character=='%')
+                Check(characters[end].lineNumber==sign.lineNumber,$"{title} keeps its signed percentage together at {scale:0.0}x");
+        }
     }
 
     private void NativeExpansion(UnitBase hero,AddressablesManager catalog)

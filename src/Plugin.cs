@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CursedEquipment
 {
-    [BepInPlugin("gkj.sfk.cursedequipment", "Cursed Equipment", "0.2.1")]
+    [BepInPlugin("gkj.sfk.cursedequipment", "Cursed Equipment", "0.2.3")]
     public sealed class Plugin : BaseUnityPlugin
     {
         private Harmony patches;
@@ -18,7 +18,7 @@ namespace CursedEquipment
                 patches.PatchAll(typeof(Plugin).Assembly);
                 if (AddressablesManager.Instance != null)
                     Catalog.Register(AddressablesManager.Instance);
-                Logger.LogInfo("Cursed Equipment 0.2.1 loaded.");
+                Logger.LogInfo("Cursed Equipment 0.2.3 loaded.");
             }
             catch
             {

@@ -4,7 +4,7 @@ Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy King
 
 ## Features
 
-- Ten rare items with original pixel-art icons and a custom frame with riveted rails, a broken corner, and distinct hover and focus states.
+- Ten rare items with original pixel-art icons and the same plum-and-crimson frame and title ribbon as Cursed Relics 0.2.8, with native focus and rarity.
 - The cards show each Gift and the red Curse together. Rarity markers and prices use the game's usual controls.
 - Effects follow the wearer. Copies occupy ordinary equipment slots and their effect applies once.
 - Equipped pieces and dropped items persist through the native kingdom save.
@@ -22,83 +22,83 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Cracked Spellglass
 
-![Cracked Spellglass native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/cracked-spellglass.png)
+![Cracked Spellglass native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/cracked-spellglass.png)
 
-**Gift** Damaging circular projectile searches have 40% more radius.
+**Gift** Damaging circles gain 40% radius.
 
-**Curse** Each qualifying damage effect deals 20% less damage per target.
+**Curse** Each target takes 20% less damage.
 
 ### Bitter Chalice
 
-![Bitter Chalice native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/bitter-chalice.png)
+![Bitter Chalice native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/bitter-chalice.png)
 
-**Gift** The wearer receives 50% stronger health heals and overheals.
+**Gift** Receive 50% more healing.
 
-**Curse** Each heal arrives three game seconds later. Death or losing the last Chalice cancels pending heals.
+**Curse** Heals arrive 3 seconds late.
 
 ### Cracked Duelist's Mirror
 
-![Cracked Duelist's Mirror native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/cracked-duelists-mirror.png)
+![Cracked Duelist's Mirror native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/cracked-duelists-mirror.png)
 
-**Gift** The wearer's first hit that reaches each monster's health deals double damage.
+**Gift** Double the first hit to each monster's health.
 
-**Curse** Each later hit by that wearer deals 25% less damage to that monster.
+**Curse** Later hits deal 25% less.
 
 ### Duelist's Fang
 
-![Duelist's Fang native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/duelists-fang.png)
+![Duelist's Fang native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/duelists-fang.png)
 
-**Gift** Repeat hits on the same monster gain 10% damage each, up to 50%.
+**Gift** +10% damage per repeat hit, up to +50%.
 
-**Curse** The first hit after switching targets deals 30% less damage.
+**Curse** Switching targets costs 30% damage on that hit.
 
 ### Martyr's Plate
 
-![Martyr's Plate native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/martyrs-plate.png)
+![Martyr's Plate native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/martyrs-plate.png)
 
-**Gift** The wearer takes 30% less Health damage.
+**Gift** Take 30% less Health damage.
 
-**Curse** The wearer receives 50% less health healing.
+**Curse** Receive 50% less healing.
 
 ### Gravedigger's Lantern
 
-![Gravedigger's Lantern native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/gravediggers-lantern.png)
+![Gravedigger's Lantern native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/gravediggers-lantern.png)
 
-**Gift** Deal 40% more damage to a target no other ally has hit in the past two game seconds.
+**Gift** +40% damage to lone targets.
 
-**Curse** Deal 15% less damage if an ally hit that target during the window.
+**Curse** -15% if an ally hit the target in the last 2s.
 
 ### Hangman's Quarrel
 
-![Hangman's Quarrel native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/hangmans-quarrel.png)
+![Hangman's Quarrel native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/hangmans-quarrel.png)
 
-**Gift** Deal 60% more damage against monsters below 20% Health.
+**Gift** +60% damage to foes below 20% Health.
 
-**Curse** Deal 15% less damage against healthier targets.
+**Curse** -15% against healthier foes.
 
 ### Emberwake Blade
 
-![Emberwake Blade native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/emberwake-blade.png)
+![Emberwake Blade native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/emberwake-blade.png)
 
-**Gift** Every fourth qualifying hit applies Burn to the surviving monster.
+**Gift** Every 4th hit on a surviving foe applies Burn.
 
-**Curse** Each trigger costs 5% of the wearer's maximum Health, down to a floor of 1 HP.
+**Curse** Each Burn costs 5% max Health, down to 1 HP.
 
 ### Leadheart Locket
 
-![Leadheart Locket native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/leadheart-locket.png)
+![Leadheart Locket native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/leadheart-locket.png)
 
-**Gift** Take 35% less Health damage below half Health.
+**Gift** Below half Health, take 35% less Health damage.
 
-**Curse** Health healing stops at 75% of maximum Health. Existing Health above that threshold is retained.
+**Curse** Heals stop at 75% Health.
 
 ### The Borrowed Halo
 
-![The Borrowed Halo native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.1/cards/the-borrowed-halo.png)
+![The Borrowed Halo native equipment card, with the item icon, Gift, and red Curse text](docs/screenshots/0.2.3/cards/the-borrowed-halo.png)
 
-**Gift** Once per battle, survive a lethal Health hit and block further Health damage for two game seconds.
+**Gift** Survive 1 lethal hit per battle. Block Health hits for 2s.
 
-**Curse** After surviving, damage to monsters is halved for eight game seconds.
+**Curse** Deal half damage for 8s.
 
 ## Compatibility
 

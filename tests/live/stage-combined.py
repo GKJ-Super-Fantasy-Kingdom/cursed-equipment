@@ -40,7 +40,7 @@ if len(arguments) == 4:
             assert manifest["name"] == name
             required = {"HoldTheLine": "0.2.3", "NightsOfTerror": "0.1.3"}
             if expansion:
-                required.update({"CursedRelics": "0.2.2", "CursedEquipment": "0.2.1"})
+                required.update({"CursedRelics": "0.2.8", "CursedEquipment": "0.2.3"})
             if name in required:
                 assert manifest["version_number"] == required[name]
             contents = archive.read(f"plugins/{name}.dll")

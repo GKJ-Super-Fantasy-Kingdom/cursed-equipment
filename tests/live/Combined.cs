@@ -40,10 +40,10 @@ public sealed partial class Probe
             && Chainloader.PluginInfos[combinedPackages[1]].Metadata.Version.ToString() == "0.1.3",
             "all four gameplay mods instantiated with Hold the Line 0.2.3 and Nights of Terror 0.1.3");
         if (ExpansionPair)
-            Check(Chainloader.PluginInfos[combinedPackages[2]].Metadata.Version.ToString()=="0.2.2"
-                && Chainloader.PluginInfos[combinedPackages[3]].Metadata.Version.ToString()=="0.2.1"
+            Check(Chainloader.PluginInfos[combinedPackages[2]].Metadata.Version.ToString()=="0.2.8"
+                && Chainloader.PluginInfos[combinedPackages[3]].Metadata.Version.ToString()=="0.2.3"
                 && Chainloader.PluginInfos.Values.Count(p=>p.Metadata.GUID!="gkj.local.cursedequipment.qa" && p.Instance)==16,
-                "Relics 0.2.2 and Equipment 0.2.1 loaded with the 14 GKJ profile mods");
+                "Relics 0.2.8 and Equipment 0.2.3 loaded with the 14 GKJ profile mods");
     }
 
     private IEnumerator Combined(AddressablesManager catalog, UnitBase hero, float scale)
@@ -54,6 +54,16 @@ public sealed partial class Probe
             if (DialogueManager.Instance.IsInDialogue()) DialogueManager.Instance.Skip();
             else overlay.CloseOverlay();
             yield return new WaitForSecondsRealtime(.15f);
+        }
+        if (phase == "combined-nights")
+        {
+            yield return EquipmentNights();
+            yield break;
+        }
+        if (phase == "combined-icons")
+        {
+            yield return GroundIcons(catalog,hero);
+            yield break;
         }
         if (phase == "combined-wave-large")
         {
@@ -81,7 +91,7 @@ public sealed partial class Probe
             yield break;
         }
         bool padMode = phase.Contains("-pad");
-        bool demo = phase == "combined-pad-large" && Environment.GetEnvironmentVariable("SFK_EQUIP_VISIBLE")=="1";
+        bool demo = phase == "combined-pad" && Environment.GetEnvironmentVariable("SFK_EQUIP_VISIBLE")=="1";
         var input = GamepadManager.Instance.GetPlayerInput();
         input.neverAutoSwitchControlSchemes = true;
         var pad = padMode ? InputSystem.AddDevice<Gamepad>() : null;
@@ -106,8 +116,11 @@ public sealed partial class Probe
         yield return Back(shop,pad,mouse,keyboard);
         Check(!shop.gameObject.activeInHierarchy, "Back closed the unaltered Blacksmith");
         if (overlay.IsOpen()) overlay.CloseOverlay();
+        bool frameOnly=phase.StartsWith("combined-frame-");
         if (ExpansionPair) yield return MixedRow(catalog,forge,pad,mouse,keyboard);
+        if (ExpansionPair && frameOnly && pad!=null) yield return SharedRelicRow(catalog,pad);
         if (ExpansionPair && padMode) yield return Roster(catalog,hero,scale,pad);
+        if (frameOnly) yield break;
 
         // Keep normal shop generation, purchase prices and callbacks. Pin the three
         // item IDs for equivalent layout and selection checks across all four runs.
@@ -164,6 +177,14 @@ public sealed partial class Probe
         Check(items.GetDragItems().Count(d=>d && d.GetItemIdentifier()==ids[1])==1
             && wallet.GetResourceAvailableAmount(price.type)==stock-price.amount,
             "paid native Blacksmith produced one Chalice and charged exactly "+price.amount+" "+price.type);
+        if (demo)
+        {
+            var sale=items.GetDragItems().Single(d=>d && d.GetItemIdentifier()==ids[1]);
+            GameCamera.Instance.SetPosition(sale.transform.position);
+            yield return new WaitForSecondsRealtime(.7f);
+            CaptureScene("purchased-drop");
+            yield return new WaitForSecondsRealtime(2f);
+        }
         Equip(hero,ids[1]);
         yield return ResumeClock();
         yield return CheckChalice(hero,"First wearer");
@@ -273,23 +294,58 @@ public sealed partial class Probe
         yield return new WaitForSecondsRealtime(1.6f);
         var cards=Cards(shop);
         var cursed=cards.Single(card=>CardId(card)==ids[1]);
+        var reference=cards.Single(card=>CardId(card)=="Sword");
         var cursedFields=Traverse.Create(cursed);
         var nativeRarity=cursedFields.Field("rarity").GetValue<Image>();
-        Check(nativeRarity && nativeRarity.sprite,"mixed cursed card retained the native rarity sprite");
+        var kingdomBadge=cursedFields.Field("kingdom").GetValue<Image>();
+        Check(nativeRarity && nativeRarity.sprite && nativeRarity.gameObject.activeInHierarchy
+            && kingdomBadge && kingdomBadge.sprite && kingdomBadge.gameObject.activeInHierarchy,
+            "mixed cursed card retained visible native rarity and kingdom badges");
         foreach (var card in cards)
         {
-            var fields=Traverse.Create(card);
-            var frame=fields.Field("spriteCardDefault").GetValue<Sprite>();
-            var wood=fields.Field("card").GetValue<Image>().transform.Find("BG");
+            var face=CardSurface(card);
+            var clip=EquipmentClip(face);
+            var wood=face.transform.Find("BG");
             bool custom=ReferenceEquals(card,cursed);
-            Check((frame.name=="equipment")==custom && wood && wood.gameObject.activeSelf!=custom,
-                CardId(card)+" renders its expected frame and icon backdrop");
+            var field=wood.Find("Cursed Equipment Icon Field");
+            Check((clip && clip.gameObject.activeInHierarchy)==custom && wood.gameObject.activeSelf
+                && (field && field.gameObject.activeInHierarchy)==custom,CardId(card)+" renders its expected trim and icon field");
         }
-        var image=cursedFields.Field("card").GetValue<Image>();
+        var image=CardSurface(cursed);
+        var native=CardSurface(reference);
+        var trim=EquipmentClip(image);
+        bool frameOnly=phase.StartsWith("combined-frame-");
+        reference.OnDeselect();
+        cursed.OnDeselect();
+        if (frameOnly)
+            CheckNativeSilhouette(native,image,trim,"resting");
+        reference.OnEnter();
         cursed.OnEnter();
-        Check(image.sprite.name=="equipment-hover","cursed native hover uses the crimson highlight");
+        Check(EquipmentArt(trim).sprite.name=="shared-trim","native hover retains the shared trim");
+        if (frameOnly)
+        {
+            yield return new WaitForSecondsRealtime(.35f);
+            CheckNativeSilhouette(native,image,trim,"hover");
+            if (pad!=null)
+            {
+                CaptureScene("mixed-frame-hover");
+                yield return new WaitForSecondsRealtime(.45f);
+            }
+        }
+        reference.OnSelect();
         cursed.OnSelect();
-        Check(image.sprite.name=="equipment-selected","cursed native selected state uses the gold highlight");
+        Check(EquipmentArt(trim).sprite.name=="shared-trim","native selection retains the shared trim");
+        if (frameOnly)
+        {
+            yield return new WaitForSecondsRealtime(.35f);
+            CheckNativeSilhouette(native,image,trim,"selected");
+            if (pad!=null)
+            {
+                CaptureScene("mixed-frame-selected");
+                yield return new WaitForSecondsRealtime(.45f);
+            }
+        }
+        reference.OnDeselect();
         cursed.OnDeselect();
         var buys=shop.transform.Find("Panel/BuyButtons").GetComponentsInChildren<Button>();
         foreach(var button in buys)
@@ -313,6 +369,106 @@ public sealed partial class Probe
         yield return Back(shop,pad,mouse,keyboard);
         Check(!shop.gameObject.activeInHierarchy,"native Back closed the mixed row");
         if (overlay.IsOpen()) overlay.CloseOverlay();
+    }
+
+    private IEnumerator SharedRelicRow(AddressablesManager catalog,Gamepad pad)
+    {
+        var manager=OverlayManager.Instance;
+        var shop=manager.GetMerchantScreen();
+        shop.Init("Shared cursed frame comparison");
+        shop.SetText("Blacksmith items and relic reward");
+        shop.SetUseCardSelectCallback(false);
+        shop.SetCancel("Leave");
+        var price=new[]{new ResourceAmount(ResourceType.Beer,2)};
+        var sword=shop.AddItem(catalog.GetItem("Sword"),price).GetComponent<UICardItem>();
+        var chalice=shop.AddItem(catalog.GetItem(ids[1]),price).GetComponent<UICardItem>();
+        var bell=shop.AddRelic(catalog.GetRelic("gkj_CR_LastWatch"),price,checkIfCanAdd:false).GetComponent<UICardRelic>();
+        shop.Display();
+        yield return new WaitForSecondsRealtime(1.6f);
+        var equipment=CardSurface(chalice);
+        var relic=Traverse.Create(bell).Field("card").GetValue<Image>();
+        var equipmentBanner=Traverse.Create(chalice).Field("title").GetValue<TMP_Text>().transform.parent;
+        var relicBanner=Traverse.Create(bell).Field("title").GetValue<TMP_Text>().transform.parent;
+        Check(SameArt(EquipmentArt(EquipmentClip(equipment)),relic.transform.Find("Cursed Relic Trim").GetComponent<Image>())
+            && SameArt(equipmentBanner.Find("Cursed Equipment Ribbon").GetComponent<Image>(),relicBanner.Find("Cursed Relic Banner").GetComponent<Image>())
+            && SameArt(equipment.transform.Find("Cursed Equipment Sigil").GetComponent<Image>(),relic.transform.Find("Cursed Relic Sigil").GetComponent<Image>())
+            && SameArt(equipment.transform.Find("BG/Cursed Equipment Icon Field").GetComponent<Image>(),relic.transform.Find("BG/Cursed Relic Icon Field").GetComponent<Image>()),
+            "Equipment and Relics share exact trim, ribbon, sigil, and icon-field pixels at this scale");
+
+        foreach (var state in new[]{"resting","hover","selected"})
+        {
+            if (state=="resting") { sword.OnDeselect(); chalice.OnDeselect(); bell.OnDeselect(); }
+            else if (state=="hover") { sword.OnEnter(); chalice.OnEnter(); bell.OnEnter(); }
+            else { sword.OnSelect(); chalice.OnSelect(); bell.OnSelect(); }
+            yield return new WaitForSecondsRealtime(.35f);
+            CheckNativeSilhouette(CardSurface(sword),equipment,EquipmentClip(equipment),"shared "+state);
+            var itemBounds=ScreenBounds(equipment);
+            var relicBounds=ScreenBounds(relic);
+            Check(Vector2.Distance(itemBounds.size,relicBounds.size)<.1f && Mathf.Abs(itemBounds.yMin-relicBounds.yMin)<.1f
+                && equipment.overrideSprite==relic.overrideSprite && SameImageMesh(equipment,relic),
+                $"shared {state} item and relic align at {itemBounds.width:0}x{itemBounds.height:0} and use the same native face mesh");
+            CaptureScene("shared-row-"+state);
+            yield return new WaitForSecondsRealtime(.5f);
+        }
+        yield return Back(shop,pad,null,null);
+        Check(!shop.gameObject.activeInHierarchy,"controller Back closed the shared frame comparison");
+        if (manager.IsOpen()) manager.CloseOverlay();
+    }
+
+    private static bool SameArt(Image a,Image b) => a && b && a.enabled && b.enabled &&
+        a.gameObject.activeInHierarchy && b.gameObject.activeInHierarchy &&
+        a.sprite.texture.GetPixels32().SequenceEqual(b.sprite.texture.GetPixels32()) &&
+        a.rectTransform.anchorMin==b.rectTransform.anchorMin && a.rectTransform.anchorMax==b.rectTransform.anchorMax;
+
+    private static Image CardSurface(UICardItem card) => Traverse.Create(card).Field("card").GetValue<Image>();
+
+    private static Image EquipmentClip(Image face) => face.transform.Find("Cursed Equipment Clip")?.GetComponent<Image>();
+
+    private static Image EquipmentArt(Image clip) => clip.transform.Find("Cursed Equipment Art").GetComponent<Image>();
+
+    private void CheckNativeSilhouette(Image reference, Image surface, Image clip, string state)
+    {
+        var ordinaryBounds=ScreenBounds(reference);
+        var cursedBounds=ScreenBounds(surface);
+        var clipBounds=ScreenBounds(clip);
+        Write($"BOUNDS {state}: Sword {ordinaryBounds}, Bitter Chalice {cursedBounds}, clip {clipBounds}");
+        Check(Vector2.Distance(ordinaryBounds.size,cursedBounds.size)<.1f
+            && Mathf.Abs(ordinaryBounds.yMin-cursedBounds.yMin)<.1f
+            && Vector2.Distance(cursedBounds.min,clipBounds.min)<.1f
+            && Vector2.Distance(cursedBounds.max,clipBounds.max)<.1f,
+            $"{state} on-screen width, height and row alignment match the ordinary card");
+        var mask=clip.GetComponent<Mask>();
+        Check(reference.overrideSprite==surface.overrideSprite && reference.overrideSprite==clip.overrideSprite
+            && reference.type==surface.type && reference.type==clip.type && mask && mask.IsActive() && !mask.showMaskGraphic
+            && !clip.raycastTarget && !EquipmentArt(clip).raycastTarget && SameImageMesh(reference,clip),
+            $"{state} native face and active art mask share the ordinary image mesh and rounding texture");
+    }
+
+    private static Rect ScreenBounds(Image image)
+    {
+        var corners=new Vector3[4];
+        image.rectTransform.GetWorldCorners(corners);
+        var canvas=image.canvas.rootCanvas;
+        var camera=canvas.renderMode==RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+        var min=RectTransformUtility.WorldToScreenPoint(camera,corners[0]);
+        var max=RectTransformUtility.WorldToScreenPoint(camera,corners[2]);
+        return Rect.MinMaxRect(min.x,min.y,max.x,max.y);
+    }
+
+    private static bool SameImageMesh(Image reference,Image clip)
+    {
+        var populate=AccessTools.Method(typeof(Image),"OnPopulateMesh",new[]{typeof(VertexHelper)});
+        using var nativeMesh=new VertexHelper();
+        using var clipMesh=new VertexHelper();
+        populate.Invoke(reference,new object[]{nativeMesh});
+        populate.Invoke(clip,new object[]{clipMesh});
+        var nativeVertices=new List<UIVertex>();
+        var clipVertices=new List<UIVertex>();
+        nativeMesh.GetUIVertexStream(nativeVertices);
+        clipMesh.GetUIVertexStream(clipVertices);
+        return nativeVertices.Count>0 && nativeVertices.Count==clipVertices.Count
+            && nativeVertices.Zip(clipVertices,(a,b)=>Vector3.Distance(a.position,b.position)<.1f
+                && Vector4.Distance(a.uv0,b.uv0)<.00001f).All(match=>match);
     }
 
     private static GamepadButton DirectionTo(Selectable target,GamepadButton fallback)
@@ -525,7 +681,7 @@ public sealed partial class Probe
         finally { CombatManager.OnMonsterSpawn -= Observe; }
     }
 
-    private void CheckWaveTarget(UnitBase wearer,MonsterBase target,string wave)
+    private void CheckWaveTarget(UnitBase wearer,MonsterBase target,string wave,bool covenant=true)
     {
         var hp=target.GetHealth();
         var oldPosition=target.transform.position;
@@ -554,8 +710,8 @@ public sealed partial class Probe
             Check(hp.GetHitpoints()==200,wave+" outside base radius");
             wearer.GiveItem(ids[0]);
             trigger.Invoke(circle,new object[]{projectile});
-            float multiplier=ExpansionPair ? .85f : 1f;
-            if (ExpansionPair) Check(RelicManager.Instance.HasRelic(Covenant),wave+" Covenant active");
+            float multiplier=ExpansionPair && covenant ? .85f : 1f;
+            if (ExpansionPair && covenant) Check(RelicManager.Instance.HasRelic(Covenant),wave+" Covenant active");
             Check(Mathf.Abs(hp.GetHitpoints()-(200-16*multiplier))<.02f,
                 wave+" Spellglass and Mirror opener, HP "+hp.GetHitpoints());
             wearer.RemoveItem(wearer.GetItems().IndexOf(ids[2])); wearer.GiveItem(ids[2]);

@@ -61,6 +61,9 @@ try {
     while (!$held) {
         try { $held = $mutex.WaitOne(5000) } catch [Threading.AbandonedMutexException] { $held = $true }
     }
+    if (Get-Process -Name 'Super Fantasy Kingdom' -ErrorAction SilentlyContinue) {
+        throw 'A Super Fantasy Kingdom process is already running'
+    }
     Copy-Item "$PSScriptRoot/bin/Release/netstandard2.1/Probe.dll" "$player/BepInEx/plugins" -Force
     $config = "$player/BepInEx/config/BepInEx.cfg"
     $settings = Get-Content -LiteralPath $config -Raw
@@ -96,7 +99,7 @@ try {
         $env:SFK_EQUIP_EXPANSION = if ($Expansion) { '1' } else { '0' }
         $p = Start-Process -FilePath "$player/Super Fantasy Kingdom.exe" -WorkingDirectory $player -WindowStyle Normal -PassThru -ArgumentList "-force-d3d11 -nosound -screen-fullscreen 0 -screen-width 1920 -screen-height 1080 -logFile `"$out/player.log`""
         try {
-            $until = (Get-Date).AddSeconds(30)
+            $until = (Get-Date).AddSeconds(60)
             $visible = $false
             do {
                 Start-Sleep -Milliseconds 250
@@ -116,7 +119,8 @@ try {
             } else { "Private window could not be confirmed for $phase" | Tee-Object "$out/window.txt" }
             if (!$visible -or !$front) { throw 'Private Unity window could not be brought to the foreground' }
             New-Item -ItemType File -Path "$out/foreground-ready" | Out-Null
-            if (!$p.WaitForExit(300000)) { Write-Warning "$phase timed out" }
+            $timeout = if ($phase -eq 'combined-nights') { 780000 } else { 300000 }
+            if (!$p.WaitForExit($timeout)) { Write-Warning "$phase timed out" }
         } finally {
             if (!$p.HasExited) { $p.Kill(); $p.WaitForExit() }
         }

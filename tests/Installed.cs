@@ -222,9 +222,9 @@ public static class Installed
         foreach (var art in new[] {"glass","chalice","mirror","fang","plate","lantern","quarrel","emberwake","locket","halo"})
             using (var s = plugin.GetManifestResourceStream("items." + art + ".png"))
                 Check(s != null && s.Length > 100, art + " sprite embedded");
-        foreach (var skin in new[] {"equipment","equipment-hover","equipment-selected"})
+        foreach (var skin in new[] {"shared-trim","shared-banner","shared-icon-field","shared-sigil"})
             using (var s = plugin.GetManifestResourceStream("frames." + skin + ".png"))
-                Check(s != null && s.Length > 100, skin + " frame state embedded");
+                Check(s != null && s.Length > 100, skin + " artwork embedded");
     }
 
     private static void CopiedSave(string path)

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.3
+
+- Shared the Cursed Relics 0.2.8 artwork and native focus treatment for cursed cards. Added more clearance around Gift and Curse text and kept signed percentages together when a line wraps.
+- Redrew all ten item icons on the game's 16 × 16 pixel grid with compact silhouettes and thin outlines. The Blacksmith and native ground drops use the same sprites.
+
+## 0.2.2
+
+- Matched the Blacksmith's native card size and corner rounding in every state, with plum rails, crimson corner inlays, a cracked smith's seal, and an ivory focus edge.
+
 ## 0.2.1
 
 - Added a distinctive plum-and-crimson Equipment frame to the ten cursed cards, with separate hover and selected states.

@@ -1,10 +1,10 @@
 # Cursed Equipment
 
-Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy Kingdom. Each gives its wearer an advantage and a drawback. A plum-and-crimson smith's frame identifies cursed offers at a glance.
+Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy Kingdom. Each gives its wearer an advantage and a drawback.
 
 ## Features
 
-- Ten rare items with original pixel-art icons and the same plum-and-crimson card treatment as Cursed Relics, with native focus and rarity.
+- Ten rare items enter the Blacksmith’s regular stock rotation.
 - The cards show each Gift and the red Curse together. Rarity markers and prices use the game's usual controls.
 - Effects follow the wearer. Copies occupy ordinary equipment slots and their effect applies once.
 - Equipped pieces and dropped items persist through the native kingdom save.
@@ -103,18 +103,17 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ## Compatibility
 
-- Tested on Super Fantasy Kingdom **0.8.068** at 1× and 1.5× UI scale. The combined tests used a copied Human kingdom, virtual controller input, and controlled combat fixtures. [Playtest notes](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/docs/release-0.2.3/README.md)
-- Tested alongside [Cursed Relics](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-relics) 0.2.9, [Nights of Terror](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/NightsOfTerror/) 0.1.3 and [Hold the Line](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/HoldTheLine/) 0.2.3. All three are optional.
-- Cursed Equipment uses the native equipment slots, restrictions, item pickups and saves. Losing the last Bitter Chalice or dying cancels pending heals.
-- Spellglass affects damaging circular projectile searches. Fang, Lantern, Quarrel and Emberwake use qualifying unit hits that reach enemy Health. Plate, Locket and Halo apply to Health damage after the wall and Shields.
+- Works with Super Fantasy Kingdom **0.8.068** and the other [GKJ mods](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/).
+- [Cursed Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/CursedRelics/) is optional. Its effects apply across your run, while cursed equipment affects the wearer. Both can be active together.
+- Cursed gear uses the game’s equipment slots, restrictions, drops, and saves. Keep the mod enabled when continuing a kingdom that owns its equipment.
+- Spellglass applies to damaging circular projectiles. Gear that triggers on Health damage follows the game’s wall and shield protection. Removing the last Bitter Chalice or losing its wearer cancels pending heals.
+- These community mods can share the same profile. [Achievement Enabler](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/AchievementEnabler/), [Bakery Uses Wheat](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/BakeryUsesWheat/), [More Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/MoreRelics/), [Right Click Skip](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/RightClickSkip/), and [Tavern Food Priorities](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/TavernFoodPriorities/).
 
 ## Installation
 
 1. In Thunderstore Mod Manager or r2modman, open a **Super Fantasy Kingdom** profile.
 2. Install **CursedEquipment** by **GKJ**. Allow the manager to install [BepInExPack](https://thunderstore.io/c/super-fantasy-kingdom/p/BepInEx/BepInExPack/) and [HideManagerGameObject Config](https://thunderstore.io/c/super-fantasy-kingdom/p/BepInEx/HideManagerGameObject_Config/).
 3. Select **Start modded** and visit the Blacksmith. For manual installation, place `plugins/CursedEquipment.dll` from the ZIP in your profile's `BepInEx/plugins` directory.
-
-See the [contribution guide](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/CONTRIBUTING.md) for builds, tests and issue reports. The original mod code is available under the [MIT License](https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/blob/v0.2.3/LICENSE). Super Fantasy Kingdom and its assets retain their respective ownership.
 
 ## Support
 

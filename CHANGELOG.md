@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5
+
+Clarify the mod’s description and compatibility for players.
+
 ## 0.2.4
 
 - Updated the Thunderstore logo with a brighter crimson seal and plum shading inside the copper frame.
@@ -27,4 +31,4 @@
 ## 0.1.0
 
 - Added Cracked Spellglass, Bitter Chalice and Cracked Duelist’s Mirror to native item selection and the Blacksmith.
-- Added paired Gift and Curse descriptions, custom pixel-art item icons, and native inventory persistence for the initial local playtest.
+- Added paired Gift and Curse descriptions, custom pixel-art item icons, and native inventory persistence.

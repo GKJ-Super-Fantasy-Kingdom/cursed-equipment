@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CursedEquipment
 {
-    [BepInPlugin("gkj.sfk.cursedequipment", "Cursed Equipment", "0.2.4")]
+    [BepInPlugin("gkj.sfk.cursedequipment", "Cursed Equipment", "0.2.5")]
     public sealed class Plugin : BaseUnityPlugin
     {
         private Harmony patches;

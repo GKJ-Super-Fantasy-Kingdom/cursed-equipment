@@ -1,8 +1,8 @@
 {
   "name": "CursedEquipment",
-  "version_number": "0.2.4",
+  "version_number": "0.2.5",
   "website_url": "https://github.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment",
-  "description": "Ten pieces of native equipment with unique Gifts and Curses for their wearers.",
+  "description": "Find ten cursed items at the Blacksmith. Equip one to give its wearer a benefit and a drawback.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305",
     "BepInEx-HideManagerGameObject_Config-5.4.2304"

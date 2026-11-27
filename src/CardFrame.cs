@@ -14,6 +14,7 @@ namespace CursedEquipment
     {
         private sealed class Trim
         {
+            internal Image Surface;
             internal Image Clip;
             internal Image IconField;
             internal Image Sigil;
@@ -21,6 +22,11 @@ namespace CursedEquipment
             internal Image Banner;
             internal Color BannerColor;
             internal Vector4 DescriptionMargin;
+            internal Sprite NativeSprite;
+            internal Sprite DefaultSprite;
+            internal Sprite HighlightSprite;
+            internal bool PricedOffer;
+            internal bool BuyFocused;
         }
 
         private static readonly ConditionalWeakTable<UICardItem, Trim> trims =
@@ -32,6 +38,9 @@ namespace CursedEquipment
         private static void Reset(UICardItem __instance, TextMeshProUGUI ___description)
         {
             if (!trims.TryGetValue(__instance, out var trim) || !trim.Clip.gameObject.activeSelf) return;
+            trim.Surface.sprite = trim.NativeSprite;
+            trim.PricedOffer = false;
+            trim.BuyFocused = false;
             trim.Clip.gameObject.SetActive(false);
             if (trim.IconField) trim.IconField.gameObject.SetActive(false);
             trim.Sigil.gameObject.SetActive(false);
@@ -44,11 +53,19 @@ namespace CursedEquipment
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(UICardItem), nameof(UICardItem.Init))]
-        private static void Apply(UICardItem __instance, Item item, Image ___card, TextMeshProUGUI ___title, TextMeshProUGUI ___description)
+        private static void Apply(UICardItem __instance, Item item, Image ___card, TextMeshProUGUI ___title,
+            TextMeshProUGUI ___description, Sprite ___spriteCardDefault, Sprite ___spriteCardHighlight)
         {
             if (!Catalog.IsCursed(item) || !___card) return;
             var trim = trims.GetValue(__instance, _ => CreateTrim(___card, ___title));
-            if (trim.IconField) trim.IconField.gameObject.SetActive(true);
+            trim.NativeSprite = ___card.sprite;
+            trim.DefaultSprite = ___spriteCardDefault ? ___spriteCardDefault : trim.NativeSprite;
+            trim.HighlightSprite = ___spriteCardHighlight;
+            if (trim.IconField)
+            {
+                trim.IconField.color = Color.white;
+                trim.IconField.gameObject.SetActive(true);
+            }
             trim.Sigil.gameObject.SetActive(true);
             if (trim.Ribbon)
             {
@@ -77,7 +94,35 @@ namespace CursedEquipment
         private static void Change(UICardItem __instance, Image ___card)
         {
             if (trims.TryGetValue(__instance, out var trim) && trim.Clip.gameObject.activeSelf)
-                CopyShape(___card, trim.Clip);
+            {
+                trim.NativeSprite = ___card.sprite;
+                RenderFocus(trim);
+            }
+        }
+
+        internal static bool ShowAsPricedOffer(UICardItem card, bool unaffordable)
+        {
+            if (!trims.TryGetValue(card, out var trim) || !trim.Clip.gameObject.activeSelf) return false;
+            trim.PricedOffer = true;
+            if (unaffordable && trim.IconField)
+                trim.IconField.color = new Color(.78f, .78f, .78f);
+            RenderFocus(trim);
+            return true;
+        }
+
+        internal static void SetBuyFocus(UICardItem card, bool focused)
+        {
+            if (!card || !trims.TryGetValue(card, out var trim)
+                || !trim.Clip.gameObject.activeSelf || trim.BuyFocused == focused) return;
+            trim.BuyFocused = focused;
+            RenderFocus(trim);
+        }
+
+        private static void RenderFocus(Trim trim)
+        {
+            if (trim.PricedOffer)
+                trim.Surface.sprite = trim.BuyFocused && trim.HighlightSprite ? trim.HighlightSprite : trim.DefaultSprite;
+            CopyShape(trim.Surface, trim.Clip);
         }
 
         private static void CopyShape(Image surface, Image clip)
@@ -101,7 +146,7 @@ namespace CursedEquipment
             clip.transform.SetAsFirstSibling();
             clip.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             CreateImage("Cursed Equipment Art", clip.rectTransform).sprite = frame ??= Catalog.LoadSprite("frames", "shared-trim");
-            var layers = new Trim { Clip = clip };
+            var layers = new Trim { Surface = surface, Clip = clip };
             var field = surface.transform.Find("BG") as RectTransform;
             if (field)
                 (layers.IconField = CreateImage("Cursed Equipment Icon Field", field)).sprite = iconField ??= Catalog.LoadSprite("frames", "shared-icon-field");

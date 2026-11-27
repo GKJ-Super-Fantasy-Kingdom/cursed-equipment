@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.7
+
+- Use the native stepped Buy outline on actionable cursed offers during hover, focus and press. Unaffordable offers keep the native muted price and show the shortfall.
+- Refresh the package icon with the Bitter Chalice and update the screenshot gallery.
+
+## 0.2.6
+
+- Highlight a cursed Blacksmith card when its Buy button is hovered or focused. Unaffordable cursed offers retain legible terms and show the resource shortfall below the native price.
+
 ## 0.2.5
 
 Clarify the mod’s description and compatibility for players.

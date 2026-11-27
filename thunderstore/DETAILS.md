@@ -1,11 +1,12 @@
 # Cursed Equipment
 
-Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy Kingdom. Each gives its wearer an advantage and a drawback.
+Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy Kingdom. Each gives its wearer an advantage and a drawback. A plum-and-crimson smith's frame identifies cursed offers at a glance.
 
 ## Features
 
-- Ten rare items enter the Blacksmith’s regular stock rotation.
+- Ten rare items with original pixel-art icons and the same plum-and-crimson card treatment as Cursed Relics, with native focus and rarity.
 - The cards show each Gift and the red Curse together. Rarity markers and prices use the game's usual controls.
+- Cursed offers highlight Buy on hover, focus, or press. Unaffordable offers show how much more you need.
 - Effects follow the wearer. Copies occupy ordinary equipment slots and their effect applies once.
 - Equipped pieces and dropped items persist through the native kingdom save.
 - Equipment pairs can work together. Spellglass and Mirror apply their multipliers to the same qualifying hit.
@@ -19,11 +20,15 @@ Ten pieces of cursed equipment join the Blacksmith's stock in Super Fantasy King
 
 ## Screenshots
 
+![Human Blacksmith at 1× with a cursed equipment offer and controller focus on Buy.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/current/human-blacksmith-1x.png)
+
+![Undead equipment shop at 1.5× with the cursed equipment offer and its price.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/current/undead-forge-1p5x.png)
+
 All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is also available as selectable text.
 
 ### Cracked Spellglass
 
-![Cracked Spellglass card showing a blue spellglass with a brass handle, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-spellglass.png)
+![Cracked Spellglass card showing a blue spellglass with a brass handle, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/cracked-spellglass.png)
 
 **Gift** Damaging circles gain 40% radius.
 
@@ -31,7 +36,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Bitter Chalice
 
-![Bitter Chalice card showing a golden cup with crimson contents, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/bitter-chalice.png)
+![Bitter Chalice card showing a golden cup with crimson contents, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/bitter-chalice.png)
 
 **Gift** Receive 50% more healing.
 
@@ -39,7 +44,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Cracked Duelist's Mirror
 
-![Cracked Duelist's Mirror card showing a round, bronze-framed mirror, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/cracked-duelists-mirror.png)
+![Cracked Duelist's Mirror card showing a round, bronze-framed mirror, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/cracked-duelists-mirror.png)
 
 **Gift** Double the first hit to each monster's health.
 
@@ -47,7 +52,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Duelist's Fang
 
-![Duelist's Fang card showing a small curved pale blade, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/duelists-fang.png)
+![Duelist's Fang card showing a small curved pale blade, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/duelists-fang.png)
 
 **Gift** +10% damage per repeat hit, up to +50%.
 
@@ -55,7 +60,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Martyr's Plate
 
-![Martyr's Plate card showing a slate breastplate with a crimson mark, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/martyrs-plate.png)
+![Martyr's Plate card showing a slate breastplate with a crimson mark, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/martyrs-plate.png)
 
 **Gift** Take 30% less Health damage.
 
@@ -63,7 +68,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Gravedigger's Lantern
 
-![Gravedigger's Lantern card showing a teal lantern in a brass frame, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/gravediggers-lantern.png)
+![Gravedigger's Lantern card showing a teal lantern in a brass frame, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/gravediggers-lantern.png)
 
 **Gift** +40% damage to lone targets.
 
@@ -71,7 +76,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Hangman's Quarrel
 
-![Hangman's Quarrel card showing a steel-tipped, red-fletched bolt, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/hangmans-quarrel.png)
+![Hangman's Quarrel card showing a steel-tipped, red-fletched bolt, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/hangmans-quarrel.png)
 
 **Gift** +60% damage to foes below 20% Health.
 
@@ -79,7 +84,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Emberwake Blade
 
-![Emberwake Blade card showing an orange-edged sword, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/emberwake-blade.png)
+![Emberwake Blade card showing an orange-edged sword, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/emberwake-blade.png)
 
 **Gift** Every 4th hit on a surviving foe applies Burn.
 
@@ -87,7 +92,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### Leadheart Locket
 
-![Leadheart Locket card showing a plum pendant on a gold loop, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/leadheart-locket.png)
+![Leadheart Locket card showing a plum pendant on a gold loop, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/leadheart-locket.png)
 
 **Gift** Below half Health, take 35% less Health damage.
 
@@ -95,7 +100,7 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ### The Borrowed Halo
 
-![The Borrowed Halo card showing a tilted gold ring, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.3/docs/screenshots/0.2.3/cards/the-borrowed-halo.png)
+![The Borrowed Halo card showing a tilted gold ring, its Gift, and its red Curse.](https://raw.githubusercontent.com/GKJ-Super-Fantasy-Kingdom/cursed-equipment/v0.2.7/docs/screenshots/cards/the-borrowed-halo.png)
 
 **Gift** Survive 1 lethal hit per battle. Block Health hits for 2s.
 
@@ -103,11 +108,11 @@ All ten Blacksmith cards appear below at 1.5× UI scale. Each Gift and Curse is 
 
 ## Compatibility
 
-- Works with Super Fantasy Kingdom **0.8.068** and the other [GKJ mods](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/).
-- [Cursed Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/CursedRelics/) is optional. Its effects apply across your run, while cursed equipment affects the wearer. Both can be active together.
-- Cursed gear uses the game’s equipment slots, restrictions, drops, and saves. Keep the mod enabled when continuing a kingdom that owns its equipment.
-- Spellglass applies to damaging circular projectiles. Gear that triggers on Health damage follows the game’s wall and shield protection. Removing the last Bitter Chalice or losing its wearer cancels pending heals.
-- These community mods can share the same profile. [Achievement Enabler](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/AchievementEnabler/), [Bakery Uses Wheat](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/BakeryUsesWheat/), [More Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/MoreRelics/), [Right Click Skip](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/RightClickSkip/), and [Tavern Food Priorities](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/TavernFoodPriorities/).
+- Tested on Super Fantasy Kingdom **0.8.070** alongside the other [GKJ mods](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/).
+- [Cursed Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/CursedRelics/), [Nights of Terror](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/NightsOfTerror/), and [Hold the Line](https://thunderstore.io/c/super-fantasy-kingdom/p/GKJ/HoldTheLine/) are optional. Cursed Relics affects your run, and cursed equipment affects its wearer.
+- Cursed Equipment uses the native equipment slots, restrictions, item pickups and saves. Losing the last Bitter Chalice or dying cancels pending heals.
+- Spellglass affects damaging circular projectile searches. Fang, Lantern, Quarrel and Emberwake use qualifying unit hits that reach enemy Health. Plate, Locket and Halo apply to Health damage after the wall and Shields.
+- Tested alongside [Achievement Enabler](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/AchievementEnabler/), [Bakery Uses Wheat](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/BakeryUsesWheat/), [More Relics](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/MoreRelics/), [Right Click Skip](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/RightClickSkip/), and [Tavern Food Priorities](https://thunderstore.io/c/super-fantasy-kingdom/p/ownlyme/TavernFoodPriorities/).
 
 ## Installation
 
